@@ -508,7 +508,16 @@
       padding: 0.6rem 1.5rem;
       border-radius: 0;
       cursor: pointer;
-      transition: color 0.3s, border-color 0.3s;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: color 0.3s, border-color 0.3s, opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .layer-advance-btn.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .layer-advance-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
@@ -1009,10 +1018,9 @@
 
       if (article.isMain) {
         const summary = focusedInner.querySelector('.focused-summary');
-        const unveil = document.getElementById('unveil-btn');
         setTimeout(() => summary && summary.classList.add('visible'), 1400);
-        setTimeout(() => unveil && unveil.classList.add('visible'), 2000);
-        // Fire up the chat companion for the main article flow
+        // Chat opens with the narrator's opener; setStage will surface the unveil
+        // button after the opener lands so the reader reads it first.
         setTimeout(() => { showChat(); setStage('focused'); }, 1800);
       } else {
         const backBtn = document.getElementById('back-archive-btn');
@@ -1340,19 +1348,19 @@
 
     // ── Chat ──
     const STAGE_OPENERS = {
-      focused: "Before we unveil what this headline leaves out — what's your gut reaction to it? No right answer. Just whatever comes up first.",
-      layer1: "This layer puts faces on the numbers. Something here will probably land harder than the rest. What is it for you?",
-      layer2: "Now we're looking at the system the headline sits inside. What's starting to connect for you — or what still feels off?",
-      layer3: "Numbers can feel clinical, but these say something pretty clear. Any of them shift how you read the original headline?",
-      return: "Same headline you started with. What reads differently now than it did the first time?"
+      focused: "Read the headline once the way you'd read it on your phone — fast, without thinking. Then send me the first word that comes up. One word is enough.",
+      layer1: "Before the system, before the data: the 280 is not a number. It's a line of people who stood somewhere at 6 a.m. hoping to be seen. Read Layer 1 slowly. When you come back, tell me the sentence you couldn't scroll past.",
+      layer2: "Now zoom out. This is where the fault line shows up. \"More services\" stops being a trade-up when it's a door some people can't walk through. Read it, then tell me where the argument starts to crack for you.",
+      layer3: "Numbers. Watch the last one — $3,000 rent against a full-time minimum-wage paycheck of $3,400. That sentence quietly rewrites every other number in this story. Tell me which one you can't unsee.",
+      return: "Same headline you started with. Read it one more time. What's different?"
     };
 
     const STAGE_LABELS = {
-      focused: "Reading the original headline (no context yet)",
-      layer1: "Layer 1 — The Human Story",
-      layer2: "Layer 2 — The Systemic Context",
-      layer3: "Layer 3 — The Data",
-      return: "Back to the original headline, after all three layers"
+      focused: "STAGE 1 of 5 — FOCUSED. Reader sees the original headline and summary, no context yet. Beat: get them to notice they've been reading it passively.",
+      layer1: "STAGE 2 of 5 — LAYER 1, THE HUMAN STORY. The 280 number becomes people. Beat: slow them down and make it personal.",
+      layer2: "STAGE 3 of 5 — LAYER 2, THE SYSTEMIC CONTEXT. The 'more services' promise gets complicated. Beat: show the fault line in the policy.",
+      layer3: "STAGE 4 of 5 — LAYER 3, THE DATA. Rent vs wages. Beat: let the math land and reframe everything that came before.",
+      return: "STAGE 5 of 5 — RETURN. Same headline, different reader. Beat: close the loop. Reference what they said in earlier stages if you can."
     };
 
     const conversationHistory = [];
@@ -1399,12 +1407,32 @@
       if (el) el.remove();
     }
 
+    function revealContinueFor(stageKey, delay) {
+      const wait = typeof delay === 'number' ? delay : 2200;
+      setTimeout(() => {
+        if (stageKey === 'focused') {
+          const btn = document.getElementById('unveil-btn');
+          if (btn) btn.classList.add('visible');
+        } else if (stageKey === 'layer1' || stageKey === 'layer2' || stageKey === 'layer3') {
+          const n = stageKey.slice(-1);
+          const layer = layersView.querySelector('.layer[data-layer="' + n + '"]');
+          const btn = layer && layer.querySelector('.layer-advance-btn');
+          if (btn) btn.classList.add('revealed');
+        }
+      }, wait);
+    }
+
     function setStage(stageKey) {
       currentStage = stageKey;
-      if (seenStages.has(stageKey)) return;
+      if (seenStages.has(stageKey)) {
+        // Returning to a stage they've already seen — make sure Continue is present
+        revealContinueFor(stageKey, 100);
+        return;
+      }
       seenStages.add(stageKey);
       const opener = STAGE_OPENERS[stageKey];
       if (opener) addMessage('assistant', opener);
+      revealContinueFor(stageKey);
     }
 
     function resetChat() {
