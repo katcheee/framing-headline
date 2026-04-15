@@ -179,8 +179,12 @@ exports.handler = async (event) => {
         systemInstruction: { parts: [{ text: systemWithLayer }] },
         contents: contents,
         generationConfig: {
-          maxOutputTokens: 512,
-          temperature: 0.7
+          maxOutputTokens: 1024,
+          temperature: 0.7,
+          // Gemini 2.5 Flash uses "thinking" tokens from the same budget as output.
+          // This is a short-narrative use case — turn it off so responses aren't
+          // truncated mid-sentence.
+          thinkingConfig: { thinkingBudget: 0 }
         }
       })
     });
