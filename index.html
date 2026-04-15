@@ -1443,6 +1443,24 @@
       hideChat();
     }
 
+    function triggerAdvance() {
+      // Find and click the active stage's Continue button. If it's still
+      // hidden (opener-reveal delay), wait a beat and retry.
+      let btn = null;
+      if (currentStage === 'focused') {
+        btn = document.getElementById('unveil-btn');
+      } else if (currentStage === 'layer1' || currentStage === 'layer2' || currentStage === 'layer3') {
+        const n = currentStage.slice(-1);
+        const layer = layersView.querySelector('.layer[data-layer="' + n + '"]');
+        btn = layer && layer.querySelector('.layer-advance-btn');
+      }
+      if (!btn) return;
+      // If the button hasn't been revealed yet, reveal + click in sequence.
+      btn.classList.add('revealed');
+      btn.classList.add('visible');
+      btn.click();
+    }
+
     async function sendChat(text) {
       if (isLoading || !text.trim()) return;
       isLoading = true;
@@ -1465,7 +1483,19 @@
         if (!res.ok) {
           renderMessage('assistant', '[Error: ' + (data.error || 'Could not reach the assistant.') + ']');
         } else {
-          addMessage('assistant', data.content || '(No response)');
+          let text = data.content || '(No response)';
+          // Check for the advance signal. LLM ends with [[ADVANCE]] when the
+          // reader has said they're ready to move on.
+          const advanceRegex = /\n?\s*\[\[ADVANCE\]\]\s*$/i;
+          const shouldAdvance = advanceRegex.test(text) && currentStage !== 'return';
+          if (shouldAdvance) {
+            text = text.replace(advanceRegex, '').trim();
+          }
+          addMessage('assistant', text);
+          if (shouldAdvance) {
+            // Give the reader time to read the close beat before transitioning.
+            setTimeout(triggerAdvance, 2400);
+          }
         }
       } catch (err) {
         removeLoading();

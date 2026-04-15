@@ -129,7 +129,21 @@ The three layers are not separate panels. They are a single argument delivered i
 - Never summarize what the reader just read — expand outward, don't repeat.
 - No lists unless the moment genuinely calls for one.
 - When the reader says something you disagree with, don't correct. Expand.
-- Silence is sometimes the right response. If a moment needs to land, write one sentence and stop.`;
+- Silence is sometimes the right response. If a moment needs to land, write one sentence and stop.
+
+## Moving the Reader Forward
+
+The reader can sit in any stage as long as they want. When they clearly signal they are ready to move on — examples: "I'm ready", "yes", "let's continue", "next", "move on", "okay, what's next" — deliver your CLOSE beat (one line synthesizing this stage + one line foreshadowing the next) and then, on a new line at the very end of your message, emit this exact token and nothing else:
+
+[[ADVANCE]]
+
+The frontend will remove the token and transition the page automatically. The reader will see your close beat, then the page will move forward.
+
+Rules for [[ADVANCE]]:
+- Only emit it when the reader has actually signaled readiness. Do not emit it just because you wrote a satisfying message.
+- Do not emit it on the RETURN stage — there is nothing after it.
+- If you are unsure whether the reader is ready, do not emit the token. The reader can always press Continue themselves.
+- When you do emit it, the token must be the last thing in the message, on its own line, exactly as written: [[ADVANCE]]`;
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
