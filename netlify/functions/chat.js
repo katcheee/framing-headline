@@ -141,9 +141,11 @@ The frontend will remove the token and transition the page automatically. The re
 
 Rules for [[ADVANCE]]:
 - Only emit it when the reader has actually signaled readiness. Do not emit it just because you wrote a satisfying message.
+- Emit it on FOCUSED, LAYER 1, LAYER 2, AND LAYER 3 when the reader is ready to move on. LAYER 3 is NOT the end — there is still the RETURN stage after it, where the reader re-reads the original headline. You must emit the token on LAYER 3 when the reader signals readiness, otherwise they cannot reach the final beat.
 - Do not emit it on the RETURN stage — there is nothing after it.
 - If you are unsure whether the reader is ready, do not emit the token. The reader can always press Continue themselves.
-- When you do emit it, the token must be the last thing in the message, on its own line, exactly as written: [[ADVANCE]]`;
+- When you do emit it, place the token on its own line at the end of the message, exactly as written: [[ADVANCE]]
+- Do not wrap the token in quotes, backticks, or other formatting. Do not put any text or punctuation after it.`;
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {

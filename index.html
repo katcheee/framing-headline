@@ -1484,12 +1484,13 @@
           renderMessage('assistant', '[Error: ' + (data.error || 'Could not reach the assistant.') + ']');
         } else {
           let text = data.content || '(No response)';
-          // Check for the advance signal. LLM ends with [[ADVANCE]] when the
-          // reader has said they're ready to move on.
-          const advanceRegex = /\n?\s*\[\[ADVANCE\]\]\s*$/i;
+          // Check for the advance signal anywhere in the message. LLM emits
+          // [[ADVANCE]] when the reader has said they're ready to move on.
+          // We match loosely so stray punctuation/whitespace doesn't block it.
+          const advanceRegex = /\[\[\s*ADVANCE\s*\]\]/i;
           const shouldAdvance = advanceRegex.test(text) && currentStage !== 'return';
           if (shouldAdvance) {
-            text = text.replace(advanceRegex, '').trim();
+            text = text.replace(advanceRegex, '').replace(/\s+$/, '').trim();
           }
           addMessage('assistant', text);
           if (shouldAdvance) {
