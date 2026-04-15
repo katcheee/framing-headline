@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Headlines Leave Out</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #1a1a1d;
+      --bg-light: #242428;
+      --bg-card: #2a2a2f;
+      --text: #e8e6e3;
+      --text-dim: #9a9a9a;
+      --text-muted: #6a6a6a;
+      --accent: #c8a96e;
+      --accent-dim: #a08550;
+      --border: #3a3a3f;
+      --layer1: #4a6670;
+      --layer2: #6a5a50;
+      --layer3: #5a5070;
+      --serif: 'Source Serif 4', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Landing page ── */
+    #landing {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #landing.recede {
+      opacity: 0;
+      transform: scale(0.92) translateY(20px);
+      pointer-events: none;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 2rem 2rem;
+    }
+
+    .page-header h1 {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto;
+      letter-spacing: -0.01em;
+    }
+
+    .page-header .subtext {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-top: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .landing-body {
+      display: flex;
+      flex: 1;
+      gap: 2.5rem;
+      padding: 1.5rem 3rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Archive box */
+    .archive {
+      flex: 0 0 240px;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 1.5rem;
+      max-height: calc(100vh - 260px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .archive::-webkit-scrollbar { width: 5px; }
+    .archive::-webkit-scrollbar-track { background: transparent; }
+    .archive::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+
+    .archive-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .archive-year { margin-bottom: 0.25rem; }
+
+    .archive-year-btn {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      text-align: left;
+      transition: color 0.2s;
+    }
+
+    .archive-year-btn:hover { color: var(--text); }
+
+    .archive-year-btn .chevron {
+      display: inline-block;
+      font-size: 0.6rem;
+      transition: transform 0.25s ease;
+    }
+
+    .archive-year-btn.open .chevron { transform: rotate(90deg); }
+
+    .archive-months {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      padding-left: 1rem;
+    }
+
+    .archive-months.open { max-height: 2000px; }
+
+    .archive-month-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      padding: 0.5rem 0 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      width: 100%;
+      text-align: left;
+      transition: color 0.2s;
+    }
+
+    .archive-month-btn:hover { color: var(--text-dim); }
+    .archive-month-btn .chevron { display: inline-block; font-size: 0.5rem; transition: transform 0.25s ease; }
+    .archive-month-btn.open .chevron { transform: rotate(90deg); }
+
+    .archive-month-items {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 0.5rem;
+    }
+
+    .archive-month-items.open { max-height: 400px; }
+
+    .archive-headline {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      line-height: 1.45;
+      padding: 0.45rem 0;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .archive-headline:hover { color: var(--accent); }
+    .archive-headline:last-child { border-bottom: none; }
+    .archive-headline.active { color: var(--accent); }
+
+    /* Featured headline */
+    .featured {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 0;
+      max-height: calc(100vh - 260px);
+      overflow: hidden;
+    }
+
+    .featured-tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-image {
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      max-height: 65%;
+      object-fit: cover;
+      border-radius: 0;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+      display: block;
+    }
+
+    .featured-headline {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      cursor: pointer;
+      transition: color 0.3s;
+      max-width: 100%;
+    }
+
+    .featured-headline:hover { color: var(--accent); }
+
+    .featured-source {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+      font-weight: 300;
+    }
+
+    .featured-date {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 0.35rem;
+      font-weight: 300;
+    }
+
+    .click-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      animation: pulse-hint 2.5s ease-in-out infinite;
+    }
+
+    .click-hint .arrow { display: inline-block; transition: transform 0.3s; }
+
+    @keyframes pulse-hint {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* ── Focused view ── */
+    #focused {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease 0.3s;
+      z-index: 10;
+      overflow-y: auto;
+      background: var(--bg);
+    }
+
+    #focused.active { opacity: 1; pointer-events: auto; }
+
+    .focused-inner {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      transform: scale(0.9) translateY(30px);
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+    }
+
+    #focused.active .focused-inner { transform: scale(1) translateY(0); }
+
+    .focused-headline {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .focused-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .focused-accompanying {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-dim);
+      text-align: left;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .focused-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-dim);
+      padding-bottom: 1px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease, color 0.2s;
+    }
+
+    .focused-link.visible { opacity: 1; transform: translateY(0); }
+    .focused-link:hover { color: #dfc088; }
+
+    .focused-summary {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text-dim);
+      text-align: left;
+      margin-bottom: 2.5rem;
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--border);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .focused-summary.visible { opacity: 1; transform: translateY(0); }
+
+    .unveil-prompt {
+      font-size: 0.85rem;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      background: transparent;
+      font-family: var(--sans);
+      transition: color 0.3s, border-color 0.3s;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .unveil-prompt.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s, border-color 0.3s;
+      animation: unveil-pulse 2.6s ease-in-out 0.5s infinite;
+    }
+
+    .unveil-prompt:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      animation: none;
+    }
+
+    @keyframes unveil-pulse {
+      0%, 100% { border-color: var(--border); }
+      50% { border-color: #eac75c; }
+    }
+
+    .focused-back-btn {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.55rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      background: transparent;
+      font-family: var(--sans);
+      transition: color 0.3s, border-color 0.3s;
+      z-index: 50;
+    }
+
+    .focused-back-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+    #layers.on-return #layers-back { display: none; }
+
+    .back-archive-btn {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      background: transparent;
+      font-family: var(--sans);
+      transition: color 0.3s, border-color 0.3s, opacity 0.5s ease, transform 0.5s ease;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .back-archive-btn.visible { opacity: 1; transform: translateY(0); }
+    .back-archive-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+    /* ── Layers view ── */
+    #layers {
+      position: fixed;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 20;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    #layers.active { opacity: 1; pointer-events: auto; }
+
+    .layer {
+      max-width: 620px;
+      width: 100%;
+      opacity: 0;
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .layer.visible { display: block; opacity: 1; }
+
+    .layer-number {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .layer-1 .layer-number { color: #7eb8c9; }
+    .layer-2 .layer-number { color: #c9a87e; }
+    .layer-3 .layer-number { color: #a98ec9; }
+
+    .layer-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .layer-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      text-align: left;
+    }
+
+    .layer-body p { margin-bottom: 1rem; }
+    .layer-body p:last-child { margin-bottom: 0; }
+    .layer-body strong,
+    .layer-body b { color: var(--text-dim); font-weight: 700; }
+    .layer-body .layer-quote {
+      margin-top: 1.5rem;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--accent-dim);
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .layer-advance { margin-top: 2.5rem; text-align: center; }
+
+    .layer-advance-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .layer-advance-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+    /* ── Headline return ── */
+    .headline-return {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .headline-return.visible { display: block; opacity: 1; }
+
+    .headline-return .return-headline {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .headline-return .return-nav {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      opacity: 0;
+      animation: fade-in 0.5s ease 0.6s forwards;
+    }
+
+    .return-nav button {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .return-nav button:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 800px) {
+      .landing-body { flex-direction: column; padding: 1rem 1.5rem 2rem; gap: 1.5rem; }
+      .archive { flex: none; max-height: 250px; }
+      .page-header h1 { font-size: 2rem; }
+      .featured-headline { font-size: 1.5rem; }
+      .focused-headline, .headline-return .return-headline { font-size: 1.4rem; }
+      #focused, #layers { padding: 2rem 1.5rem; }
+      .article-image { max-height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Landing Page ── -->
+  <div id="landing">
+    <header class="page-header">
+      <h1>Headlines shape what we think we know. Here's what they leave out.</h1>
+      <p class="subtext">Click any headline to uncover what's behind the story.</p>
+    </header>
+
+    <main class="landing-body">
+      <aside class="archive" id="archive-sidebar">
+        <div class="archive-label">What's Been Reported</div>
+      </aside>
+
+      <section class="featured">
+        <div class="featured-tag">Most Recent</div>
+        <img class="article-image" id="image-click" src="Images/shelter.png" alt="Article image">
+        <h2 class="featured-headline" id="featured-click">
+          Mayor Lurie says he's trading S.F. shelter beds for sites with more services. Critics aren't convinced.
+        </h2>
+        <p class="featured-source">San Francisco Chronicle</p>
+        <p class="featured-date">April 12, 2026</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- ── Focused View ── -->
+  <div id="focused">
+    <button id="focused-back" class="focused-back-btn">&larr; Back</button>
+    <div class="focused-inner" id="focused-inner"></div>
+  </div>
+
+  <!-- ── Layers View ── -->
+  <div id="layers">
+    <button id="layers-back" class="focused-back-btn">&larr; Back</button>
+    <div class="layer layer-1" data-layer="1">
+      <div class="layer-number">Layer 1 &mdash; The Human Story</div>
+      <h3 class="layer-title">What it means to lose a bed</h3>
+      <div class="layer-body">
+        <p>Behind the <b>number 280</b> are people. People who stood in line at 6 a.m. People who finally had a place to leave a bag while they looked for work. People who slept somewhere warm for the first time in months.</p>
+        <p>A shelter bed is not just a bed. For many, it is the first stable point in a long stretch of instability, a place to shower, to receive mail, to be found by a caseworker. When that bed disappears, the person does not. They go back to a tent, a doorway, or nowhere at all.</p>
+        <p>The <b>400 people on the waitlist</b> are not an abstraction. Each one has a name, a history, and a reason they ended up asking the city for help. The headline tells us about policy. It does not tell us about them.</p>
+      </div>
+      <div class="layer-advance">
+        <button class="layer-advance-btn" data-next="2">Continue &rarr;</button>
+      </div>
+    </div>
+
+    <div class="layer layer-2" data-layer="2">
+      <div class="layer-number">Layer 2 &mdash; The Systemic Context</div>
+      <h3 class="layer-title">Why "more services" is not a simple trade</h3>
+      <div class="layer-body">
+        <p>The city's plan assumes that treatment-based housing can simply replace traditional shelter. <b>Treatment-based housing requires residents to be enrolled in or actively pursuing drug or mental health treatment as a condition of having a bed.</b> But not everyone experiencing homelessness has a substance use disorder or a diagnosed mental health condition. Many are homeless because of eviction, job loss, domestic violence, or medical debt. For them, a treatment bed comes with conditions they don't qualify for or aren't ready to meet. <b>It is not a step up. It is a different line entirely.</b></p>
+        <p>Closing a shelter before alternatives are fully operational is not a new pattern in San Francisco. Each administration reframes the approach, Housing First, treatment first, accountability, while <b>the fundamental shortage of affordable housing remains unchanged.</b></p>
+        <p>As advocate Lukas Illa put it, when cities remove low-barrier options without creating accessible alternatives, the people who don't qualify for treatment-based housing don't disappear. They return to the street, where surviving in public space is increasingly treated as a crime.</p>
+        <p class="layer-quote">"Where are they going to go? If the answer is jail, then say that."</p>
+      </div>
+      <div class="layer-advance">
+        <button class="layer-advance-btn" data-next="3">Continue &rarr;</button>
+      </div>
+    </div>
+
+    <div class="layer layer-3" data-layer="3">
+      <div class="layer-number">Layer 3 &mdash; The Data</div>
+      <h3 class="layer-title">What the numbers say</h3>
+      <div class="layer-body">
+        <p><b>711 Post Street</b> is a 280-bed shelter currently housing people experiencing homelessness in Lower Nob Hill. It closes in March 2027.</p>
+        <p>As of this article, <b>nearly 400 people are already on the citywide waitlist</b> for a shelter bed. That means demand already exceeds supply before this closure even takes effect.</p>
+        <p>The mayor's office says a <b>net 202 beds have been added</b> since Lurie took office. But that number was calculated before this closure was announced. Once 711 Post shuts down, <b>roughly 250 of those beds are gone, erasing the net gain entirely.</b></p>
+        <p>San Francisco's <b>median rent sits above $3,000 a month.</b> A person working full time at minimum wage takes home roughly <b>$3,400 a month before taxes.</b> No amount of shelter restructuring changes that math. <b>And until the math changes, the waitlist will keep growing.</b></p>
+      </div>
+      <div class="layer-advance">
+        <button class="layer-advance-btn" id="finish-btn">Continue &rarr;</button>
+      </div>
+    </div>
+
+    <div class="headline-return" id="headline-return">
+      <h2 class="return-headline">
+        Mayor Lurie says he's trading S.F. shelter&nbsp;beds for sites with more services. Critics&nbsp;aren't convinced.
+      </h2>
+      <div class="return-nav">
+        <button id="back-btn">&larr; Back to layers</button>
+        <button id="home-btn">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Article Data ──
+    const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    const MAIN_ACCOMPANYING = 'As San Francisco overhauls its network of homeless shelters, a large facility near the Tenderloin that faced opposition from neighbors and the recent departure of its operator will close its doors. The 280-bed shelter at 711 Post St. in Lower Nob Hill will shutter in March 2027, with nearly 400 people currently on the waitlist for shelter beds citywide.';
+
+    const MAIN_DETAIL = 'San Francisco is closing 711 Post Street, a 280-bed homeless shelter in Lower Nob Hill, in March 2027. The closure is part of a broader overhaul of the city\u2019s shelter system under Mayor Daniel Lurie, who argues that the city needs fewer traditional shelter beds and more beds tied to drug treatment and mental health services. Two other shelters have already closed in recent months. The mayor\u2019s office says more beds have been added than removed overall since Lurie took office. Homeless advocates are raising concerns about what happens to people who are not ready for or able to access treatment-based housing, particularly as the closure moves forward with nearly 400 people already on the shelter waitlist.';
+
+    const ARTICLES = [
+      // ── 2024 ── (placeholders)
+      { id:'24-ph-01', year:2024, month:0, source:'—', date:'January 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-02', year:2024, month:1, source:'—', date:'February 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-03', year:2024, month:2, source:'—', date:'March 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-04', year:2024, month:3, source:'—', date:'April 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-05', year:2024, month:4, source:'—', date:'May 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-06', year:2024, month:5, source:'—', date:'June 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-07', year:2024, month:6, source:'—', date:'July 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-08', year:2024, month:7, source:'—', date:'August 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-09', year:2024, month:8, source:'—', date:'September 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-10', year:2024, month:9, source:'—', date:'October 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-11', year:2024, month:10, source:'—', date:'November 2024', headline:'Placeholder', summary:'' },
+      { id:'24-ph-12', year:2024, month:11, source:'—', date:'December 2024', headline:'Placeholder', summary:'' },
+
+      // ── 2025 ── (placeholders)
+      { id:'25-ph-01', year:2025, month:0, source:'—', date:'January 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-02', year:2025, month:1, source:'—', date:'February 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-03', year:2025, month:2, source:'—', date:'March 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-04', year:2025, month:3, source:'—', date:'April 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-05', year:2025, month:4, source:'—', date:'May 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-06', year:2025, month:5, source:'—', date:'June 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-07', year:2025, month:6, source:'—', date:'July 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-08', year:2025, month:7, source:'—', date:'August 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-09', year:2025, month:8, source:'—', date:'September 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-10', year:2025, month:9, source:'—', date:'October 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-11', year:2025, month:10, source:'—', date:'November 2025', headline:'Placeholder', summary:'' },
+      { id:'25-ph-12', year:2025, month:11, source:'—', date:'December 2025', headline:'Placeholder', summary:'' },
+
+      // ── 2026 ── (placeholders + main article)
+      { id:'26-ph-01', year:2026, month:0, source:'—', date:'January 2026', headline:'Placeholder', summary:'' },
+      { id:'26-ph-02', year:2026, month:1, source:'—', date:'February 2026', headline:'Placeholder', summary:'' },
+      { id:'26-ph-03', year:2026, month:2, source:'—', date:'March 2026', headline:'Placeholder', summary:'' },
+      // April
+      { id:'lurie-shelters', year:2026, month:3, source:'San Francisco Chronicle', date:'April 12, 2026',
+        headline:"Mayor Lurie says he\u2019s trading S.F. shelter\u00A0beds for sites with more services. Critics\u00A0aren\u2019t convinced.",
+        summary: MAIN_ACCOMPANYING,
+        isMain: true },
+    ];
+
+    // ── State ──
+    let currentArticle = null;
+    let currentLayer = 0;
+
+    // ── Elements ──
+    const landing = document.getElementById('landing');
+    const focused = document.getElementById('focused');
+    const focusedInner = document.getElementById('focused-inner');
+    const layersView = document.getElementById('layers');
+    const featuredClick = document.getElementById('featured-click');
+    const finishBtn = document.getElementById('finish-btn');
+    const headlineReturn = document.getElementById('headline-return');
+    const backBtn = document.getElementById('back-btn');
+    const homeBtn = document.getElementById('home-btn');
+    const layers = layersView.querySelectorAll('.layer');
+
+    // ── Build Archive ──
+    function buildArchive() {
+      const sidebar = document.getElementById('archive-sidebar');
+      const years = [2026, 2025, 2024];
+
+      years.forEach(year => {
+        const yearDiv = document.createElement('div');
+        yearDiv.className = 'archive-year';
+
+        const isCurrentYear = year === 2026;
+        const yearBtn = document.createElement('button');
+        yearBtn.className = 'archive-year-btn' + (isCurrentYear ? ' open' : '');
+        yearBtn.innerHTML = '<span class="chevron">&#9654;</span> ' + year;
+
+        const monthsDiv = document.createElement('div');
+        monthsDiv.className = 'archive-months' + (isCurrentYear ? ' open' : '');
+
+        const yearArticles = ARTICLES.filter(a => a.year === year);
+        const monthsInYear = [...new Set(yearArticles.map(a => a.month))].sort((a, b) => b - a);
+
+        monthsInYear.forEach(m => {
+          const isCurrentMonth = isCurrentYear && m === 3; // April 2026
+          const monthBtn = document.createElement('button');
+          monthBtn.className = 'archive-month-btn' + (isCurrentMonth ? ' open' : '');
+          monthBtn.innerHTML = '<span class="chevron">&#9654;</span> ' + MONTH_NAMES[m];
+
+          const itemsDiv = document.createElement('div');
+          itemsDiv.className = 'archive-month-items' + (isCurrentMonth ? ' open' : '');
+
+          const monthArticles = yearArticles.filter(a => a.month === m);
+          monthArticles.forEach(article => {
+            const btn = document.createElement('button');
+            btn.className = 'archive-headline' + (article.isMain ? ' active' : '');
+            btn.textContent = article.headline;
+            btn.addEventListener('click', () => openArticle(article));
+            itemsDiv.appendChild(btn);
+          });
+
+          monthBtn.addEventListener('click', () => {
+            monthBtn.classList.toggle('open');
+            itemsDiv.classList.toggle('open');
+          });
+
+          monthsDiv.appendChild(monthBtn);
+          monthsDiv.appendChild(itemsDiv);
+        });
+
+        yearBtn.addEventListener('click', () => {
+          yearBtn.classList.toggle('open');
+          monthsDiv.classList.toggle('open');
+        });
+
+        yearDiv.appendChild(yearBtn);
+        yearDiv.appendChild(monthsDiv);
+        sidebar.appendChild(yearDiv);
+      });
+    }
+
+    // ── Get article URL ──
+    function getArticleUrl(article) {
+      if (article.isMain) return 'https://www.sfchronicle.com/sf/article/lurie-homeless-shelters-22198313.php';
+      if (article.url) return article.url;
+      return 'https://news.google.com/search?q=' + encodeURIComponent(article.headline);
+    }
+
+    // ── Open Article ──
+    function openArticle(article) {
+      // Placeholders go to the main article interaction
+      if (article.headline === 'Placeholder') {
+        const main = ARTICLES.find(a => a.isMain);
+        if (main) openArticle(main);
+        return;
+      }
+
+      currentArticle = article;
+      const url = getArticleUrl(article);
+
+      if (article.isMain) {
+        focusedInner.innerHTML =
+          '<h2 class="focused-headline">' + escapeHtml(article.headline) + '</h2>' +
+          '<p class="focused-date">' + escapeHtml(article.source) + ' &middot; ' + escapeHtml(article.date) + '</p>' +
+          '<a class="focused-link" href="' + url + '" target="_blank" rel="noopener">Read the full article &rarr;</a>' +
+          '<div class="focused-summary">' + escapeHtml(MAIN_DETAIL) + '</div>' +
+          '<button class="unveil-prompt" id="unveil-btn">Click to unveil what\'s missing from this story</button>';
+
+        // Re-attach unveil listener
+        document.getElementById('unveil-btn').addEventListener('click', startLayers);
+      } else {
+        focusedInner.innerHTML =
+          '<h2 class="focused-headline">' + escapeHtml(article.headline) + '</h2>' +
+          '<p class="focused-date">' + escapeHtml(article.source) + ' &middot; ' + escapeHtml(article.date) + '</p>' +
+          '<p class="focused-accompanying">' + escapeHtml(article.summary) + '</p>' +
+          '<a class="focused-link" href="' + url + '" target="_blank" rel="noopener">Read the full article &rarr;</a>' +
+          '<button class="back-archive-btn" id="back-archive-btn">&larr; Back to archive</button>';
+
+        document.getElementById('back-archive-btn').addEventListener('click', resetToLanding);
+      }
+
+      landing.classList.add('recede');
+      focused.classList.add('active');
+
+      // Stagger animations
+      const link = focusedInner.querySelector('.focused-link');
+      setTimeout(() => link && link.classList.add('visible'), 800);
+
+      if (article.isMain) {
+        const summary = focusedInner.querySelector('.focused-summary');
+        const unveil = document.getElementById('unveil-btn');
+        setTimeout(() => summary && summary.classList.add('visible'), 1400);
+        setTimeout(() => unveil && unveil.classList.add('visible'), 2000);
+      } else {
+        const backBtn = document.getElementById('back-archive-btn');
+        setTimeout(() => backBtn && backBtn.classList.add('visible'), 1200);
+      }
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // ── Featured headline click ──
+    featuredClick.addEventListener('click', () => {
+      const main = ARTICLES.find(a => a.isMain);
+      if (main) openArticle(main);
+    });
+
+    document.getElementById('image-click').addEventListener('click', () => {
+      const main = ARTICLES.find(a => a.isMain);
+      if (main) openArticle(main);
+    });
+
+    // ── Start layers ──
+    function startLayers() {
+      // Everything on the focused page scales up and flies forward
+      focusedInner.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 1, 1), opacity 0.7s ease';
+      focusedInner.style.transform = 'scale(3) translateZ(200px)';
+      focusedInner.style.opacity = '0';
+
+      setTimeout(() => {
+        focused.style.display = 'none';
+        focused.classList.remove('active');
+        focusedInner.style.transition = '';
+        focusedInner.style.transform = '';
+        focusedInner.style.opacity = '';
+
+        layersView.classList.add('active');
+        // Show layer 1 with scale-from-center effect
+        currentLayer = 1;
+        layers.forEach(l => l.classList.remove('visible'));
+        headlineReturn.classList.remove('visible');
+
+        const target = layersView.querySelector('.layer[data-layer="1"]');
+        if (target) {
+          target.style.transform = 'translate(-50%, -50%) scale(0)';
+          target.style.opacity = '0';
+          target.style.display = 'block';
+          target.offsetHeight;
+          target.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease';
+          target.style.transform = 'translate(-50%, -50%) scale(1)';
+          target.style.opacity = '1';
+          target.classList.add('visible');
+          setTimeout(() => {
+            target.style.display = '';
+            target.style.transition = '';
+            target.style.transform = '';
+            target.style.opacity = '';
+          }, 850);
+        }
+      }, 700);
+    }
+
+    function showLayer(n) {
+      currentLayer = n;
+      layers.forEach(l => l.classList.remove('visible'));
+      headlineReturn.classList.remove('visible');
+
+      const target = layersView.querySelector('.layer[data-layer="' + n + '"]');
+      if (target) setTimeout(() => target.classList.add('visible'), 50);
+    }
+
+    const CENTER = 'translate(-50%, -50%)';
+
+    // ── Layer advance: slide current left, bring next from right ──
+    document.querySelectorAll('.layer-advance-btn[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const nextNum = parseInt(btn.dataset.next);
+        const current = layersView.querySelector('.layer[data-layer="' + currentLayer + '"]');
+        const next = layersView.querySelector('.layer[data-layer="' + nextNum + '"]');
+
+        if (current && next) {
+          current.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
+          current.style.transform = CENTER + ' translateX(-120vw)';
+          current.style.opacity = '0';
+
+          setTimeout(() => {
+            current.classList.remove('visible');
+            current.style.display = '';
+            current.style.transition = '';
+            current.style.transform = '';
+            current.style.opacity = '';
+
+            next.style.transform = CENTER + ' translateX(120vw)';
+            next.style.opacity = '0';
+            next.style.display = 'block';
+            next.offsetHeight;
+            next.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease';
+            next.style.transform = CENTER;
+            next.style.opacity = '1';
+            next.classList.add('visible');
+            currentLayer = nextNum;
+
+            setTimeout(() => {
+              next.style.display = '';
+              next.style.transition = '';
+              next.style.transform = '';
+              next.style.opacity = '';
+            }, 650);
+          }, 600);
+        }
+      });
+    });
+
+    // ── Final continue: layers recede backwards in sequence, then headline scales back ──
+    finishBtn.addEventListener('click', () => {
+      // Hide the top-left back button before the recede animation starts
+      layersView.classList.add('on-return');
+      const layer3 = layersView.querySelector('.layer[data-layer="3"]');
+      const layer2 = layersView.querySelector('.layer[data-layer="2"]');
+      const layer1 = layersView.querySelector('.layer[data-layer="1"]');
+
+      // Layer starts huge (big text, off-screen feel), shrinks through
+      // readable size at center, then keeps shrinking to nothing.
+      // Opacity: invisible when huge, fades in as it becomes readable, fades out as it vanishes.
+      function recedeLayer(el) {
+        return new Promise(resolve => {
+          el.style.display = 'block';
+          el.style.transform = CENTER + ' scale(8)';
+          el.style.opacity = '0';
+          el.offsetHeight;
+          el.style.transition = 'transform 0.8s cubic-bezier(0.2, 0, 0.3, 1)';
+          el.style.transform = CENTER + ' scale(0)';
+          el.animate([
+            { opacity: 0 },
+            { opacity: 0, offset: 0.05 },
+            { opacity: 0.85, offset: 0.2 },
+            { opacity: 0.85, offset: 0.5 },
+            { opacity: 0, offset: 0.85 },
+            { opacity: 0 }
+          ], { duration: 800, easing: 'ease', fill: 'forwards' });
+
+          setTimeout(() => {
+            el.getAnimations().forEach(a => a.cancel());
+            el.style.display = 'none';
+            el.style.transition = '';
+            el.style.transform = '';
+            el.style.opacity = '';
+            el.classList.remove('visible');
+            resolve();
+          }, 800);
+        });
+      }
+
+      // Layer 3 is already visible at scale(1) — shrink it to nothing
+      layer3.style.transition = 'transform 0.4s ease-in, opacity 0.4s ease';
+      layer3.style.transform = CENTER + ' scale(0)';
+      layer3.style.opacity = '0';
+
+      setTimeout(() => {
+        layer3.classList.remove('visible');
+        layer3.style.display = 'none';
+        layer3.style.transition = '';
+        layer3.style.transform = '';
+        layer3.style.opacity = '';
+
+        recedeLayer(layer2).then(() => {
+          recedeLayer(layer1).then(() => {
+            headlineReturn.style.display = 'block';
+            headlineReturn.style.transform = CENTER + ' scale(8)';
+            headlineReturn.style.opacity = '0';
+            headlineReturn.offsetHeight;
+            headlineReturn.style.transition = 'transform 1s cubic-bezier(0.2, 0, 0.3, 1), opacity 0.8s ease';
+            headlineReturn.style.transform = CENTER + ' scale(1)';
+            headlineReturn.style.opacity = '1';
+            headlineReturn.classList.add('visible');
+
+            setTimeout(() => {
+              headlineReturn.style.transition = '';
+              headlineReturn.style.transform = '';
+            }, 1050);
+          });
+        });
+      }, 400);
+    });
+
+    // ── Back to layers (from final headline page) ──
+    backBtn.addEventListener('click', () => {
+      layersView.classList.remove('on-return');
+      headlineReturn.classList.remove('visible');
+      headlineReturn.style.display = '';
+      headlineReturn.style.transform = '';
+      headlineReturn.style.opacity = '';
+      headlineReturn.style.transition = '';
+      layers.forEach(l => {
+        l.style.display = '';
+        l.style.transform = '';
+        l.style.opacity = '';
+        l.style.transition = '';
+        l.getAnimations && l.getAnimations().forEach(a => a.cancel());
+      });
+      setTimeout(() => showLayer(1), 200);
+    });
+
+    // ── Home ──
+    homeBtn.addEventListener('click', resetToLanding);
+
+    // ── Focused back button (instant, no fade) ──
+    document.getElementById('focused-back').addEventListener('click', () => {
+      landing.style.transition = 'none';
+      focused.style.transition = 'none';
+      resetToLanding();
+      // Force reflow, then restore transitions for subsequent interactions
+      landing.offsetHeight;
+      focused.offsetHeight;
+      setTimeout(() => {
+        landing.style.transition = '';
+        focused.style.transition = '';
+      }, 50);
+    });
+
+    // ── Layers back button: go to previous layer, or focused view from layer 1 ──
+    document.getElementById('layers-back').addEventListener('click', () => {
+      if (currentLayer <= 1) {
+        // On layer 1 (or unknown) → return to focused article view
+        layersView.classList.remove('active');
+        layersView.classList.remove('on-return');
+        headlineReturn.classList.remove('visible');
+        headlineReturn.style.display = '';
+        headlineReturn.style.transform = '';
+        headlineReturn.style.opacity = '';
+        headlineReturn.style.transition = '';
+        layers.forEach(l => {
+          l.classList.remove('visible');
+          l.style.display = '';
+          l.style.transform = '';
+          l.style.opacity = '';
+          l.style.transition = '';
+          l.getAnimations && l.getAnimations().forEach(a => a.cancel());
+        });
+        focused.style.display = '';
+        focused.style.transition = '';
+        focused.style.opacity = '';
+        focusedInner.style.transform = '';
+        focusedInner.style.transition = '';
+        focusedInner.style.opacity = '';
+        focused.classList.add('active');
+        currentLayer = 0;
+        return;
+      }
+
+      // Otherwise slide current layer out to the right and bring previous back from the left
+      const prevNum = currentLayer - 1;
+      const current = layersView.querySelector('.layer[data-layer="' + currentLayer + '"]');
+      const prev = layersView.querySelector('.layer[data-layer="' + prevNum + '"]');
+
+      if (!current || !prev) return;
+
+      current.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
+      current.style.transform = CENTER + ' translateX(120vw)';
+      current.style.opacity = '0';
+
+      setTimeout(() => {
+        current.classList.remove('visible');
+        current.style.display = '';
+        current.style.transition = '';
+        current.style.transform = '';
+        current.style.opacity = '';
+
+        prev.style.transform = CENTER + ' translateX(-120vw)';
+        prev.style.opacity = '0';
+        prev.style.display = 'block';
+        prev.offsetHeight;
+        prev.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease';
+        prev.style.transform = CENTER;
+        prev.style.opacity = '1';
+        prev.classList.add('visible');
+        currentLayer = prevNum;
+
+        setTimeout(() => {
+          prev.style.display = '';
+          prev.style.transition = '';
+          prev.style.transform = '';
+          prev.style.opacity = '';
+        }, 650);
+      }, 600);
+    });
+
+    function resetToLanding() {
+      layersView.classList.remove('active');
+      layersView.classList.remove('on-return');
+      headlineReturn.classList.remove('visible');
+      headlineReturn.style.display = '';
+      headlineReturn.style.transform = '';
+      headlineReturn.style.opacity = '';
+      headlineReturn.style.transition = '';
+      layers.forEach(l => {
+        l.classList.remove('visible');
+        l.style.display = '';
+        l.style.transform = '';
+        l.style.opacity = '';
+        l.style.transition = '';
+        l.getAnimations && l.getAnimations().forEach(a => a.cancel());
+      });
+
+      focused.style.display = '';
+      focused.style.opacity = '';
+      focused.classList.remove('active');
+
+      focusedInner.style.transform = '';
+      focusedInner.style.transition = '';
+      focusedInner.style.opacity = '';
+
+      landing.classList.remove('recede');
+      currentLayer = 0;
+      currentArticle = null;
+    }
+
+    // ── Initialize ──
+    buildArchive();
+  </script>
+</body>
+</html>
