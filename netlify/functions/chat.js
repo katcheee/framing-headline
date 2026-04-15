@@ -1,5 +1,5 @@
-// Netlify serverless function that proxies chat requests to the Anthropic API.
-// Your ANTHROPIC_API_KEY must be set as an environment variable in Netlify.
+// Netlify serverless function that proxies chat requests to the Google Gemini API.
+// Your GOOGLE_API_KEY (from Google AI Studio) must be set as an environment variable in Netlify.
 
 const SYSTEM_PROMPT = `## Persona
 
@@ -99,12 +99,12 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'ANTHROPIC_API_KEY environment variable not set on the server.' })
+      body: JSON.stringify({ error: 'GOOGLE_API_KEY environment variable not set on the server.' })
     };
   }
 
@@ -124,19 +124,27 @@ exports.handler = async (event) => {
     ? `${SYSTEM_PROMPT}\n\n## The user is currently on:\n${layerContext}`
     : SYSTEM_PROMPT;
 
+  // Convert our { role: 'user' | 'assistant', content } shape into Gemini's
+  // { role: 'user' | 'model', parts: [{ text }] } shape.
+  const contents = messages.map(m => ({
+    role: m.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: m.content }]
+  }));
+
+  const model = 'gemini-2.5-flash';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5',
-        max_tokens: 512,
-        system: systemWithLayer,
-        messages: messages
+        systemInstruction: { parts: [{ text: systemWithLayer }] },
+        contents: contents,
+        generationConfig: {
+          maxOutputTokens: 512,
+          temperature: 0.7
+        }
       })
     });
 
@@ -149,9 +157,7 @@ exports.handler = async (event) => {
       };
     }
 
-    const text = data.content && data.content[0] && data.content[0].text
-      ? data.content[0].text
-      : '';
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
     return {
       statusCode: 200,

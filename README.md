@@ -1,6 +1,6 @@
 # What Headlines Leave Out
 
-An interactive article that guides a reader through three layers of context behind a single headline — the human story, the systemic context, and the data — with a Claude-powered chat companion that opens each stage with a prompt and stays available for the reader to dig deeper.
+An interactive article that guides a reader through three layers of context behind a single headline — the human story, the systemic context, and the data — with a Gemini-powered chat companion that opens each stage with a prompt and stays available for the reader to dig deeper.
 
 **Live headline:** *Mayor Lurie says he's trading S.F. shelter beds for sites with more services. Critics aren't convinced.* (San Francisco Chronicle, April 2026)
 
@@ -36,23 +36,23 @@ Each stage of the journey triggers a specific opening question from the guide. T
 ## Architecture
 
 - **Frontend:** single-file `index.html` — all HTML, CSS, and JS inline. No build step.
-- **LLM proxy:** `netlify/functions/chat.js` is a Netlify serverless function that holds the system prompt and the `ANTHROPIC_API_KEY`, so the key is never exposed to the browser.
-- **Model:** `claude-haiku-4-5` — fast, cheap enough for an unthrottled public demo, and sharp enough for this kind of guided dialogue.
+- **LLM proxy:** `netlify/functions/chat.js` is a Netlify serverless function that holds the system prompt and the `GOOGLE_API_KEY` (from Google AI Studio), so the key is never exposed to the browser.
+- **Model:** `gemini-2.5-flash` — on the free tier, fast enough for an interactive demo.
 - **Config:** `netlify.toml` points Netlify at the functions folder and publishes the repo root as the site.
 
 Request flow:
 ```
-browser  →  POST /.netlify/functions/chat  →  Anthropic API  →  response back to browser
+browser  →  POST /.netlify/functions/chat  →  Gemini API  →  response back to browser
 ```
 
-The browser sends the full conversation history plus a short `layerContext` string describing which stage the reader is currently on. The serverless function appends that context to the system prompt.
+The browser sends the full conversation history plus a short `layerContext` string describing which stage the reader is currently on. The serverless function appends that context to the system prompt and translates the message format into Gemini's expected shape.
 
 ## Deploying
 
 1. Push this repo to GitHub.
 2. In Netlify, "Add new site" → "Import an existing project" → connect the GitHub repo.
 3. Under **Site settings → Environment variables**, add:
-   - `ANTHROPIC_API_KEY` = your Anthropic API key
+   - `GOOGLE_API_KEY` = your Google AI Studio API key
 4. Trigger a redeploy after adding the key.
 
 That's it. `netlify.toml` tells Netlify everything else it needs.
@@ -66,7 +66,7 @@ npm install -g netlify-cli
 netlify dev
 ```
 
-`netlify dev` spins up both the static site and the serverless function at `http://localhost:8888`. Set `ANTHROPIC_API_KEY` in a `.env` file in the repo root or export it in your shell before running.
+`netlify dev` spins up both the static site and the serverless function at `http://localhost:8888`. Set `GOOGLE_API_KEY` in a `.env` file in the repo root or export it in your shell before running.
 
 ## Repo layout
 
