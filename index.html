@@ -568,6 +568,158 @@
       to { opacity: 1; }
     }
 
+    /* ── Chat Panel ── */
+    #chat-panel {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 360px;
+      max-width: calc(100vw - 2.5rem);
+      height: 460px;
+      max-height: calc(100vh - 2.5rem);
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), height 0.3s ease;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+
+    #chat-panel.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #chat-panel.minimized { height: 44px; }
+    #chat-panel.minimized .chat-messages,
+    #chat-panel.minimized .chat-form { display: none; }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 0.9rem;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .chat-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .chat-toggle {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0 0.3rem;
+      line-height: 1;
+      font-family: var(--sans);
+    }
+
+    .chat-toggle:hover { color: var(--accent); }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar { width: 5px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border); }
+
+    .chat-msg {
+      font-size: 0.85rem;
+      line-height: 1.55;
+      padding: 0.55rem 0.8rem;
+      max-width: 92%;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .chat-msg.assistant {
+      background: var(--bg-card);
+      color: var(--text);
+      align-self: flex-start;
+      border-left: 2px solid var(--accent-dim);
+    }
+
+    .chat-msg.user {
+      background: var(--accent-dim);
+      color: #1a1a1d;
+      align-self: flex-end;
+      font-weight: 500;
+    }
+
+    .chat-msg.loading {
+      color: var(--text-muted);
+      font-style: italic;
+      background: transparent;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.65rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-light);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.7rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      border-radius: 0;
+      resize: none;
+      line-height: 1.4;
+      outline: none;
+      transition: border-color 0.2s;
+      max-height: 100px;
+    }
+
+    .chat-input:focus { border-color: var(--accent-dim); }
+    .chat-input::placeholder { color: var(--text-muted); }
+
+    .chat-send {
+      background: var(--accent-dim);
+      border: none;
+      color: #1a1a1d;
+      padding: 0 0.9rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+
+    .chat-send:hover:not(:disabled) { background: var(--accent); }
+    .chat-send:disabled { opacity: 0.45; cursor: not-allowed; }
+
     /* ── Responsive ── */
     @media (max-width: 800px) {
       .landing-body { flex-direction: column; padding: 1rem 1.5rem 2rem; gap: 1.5rem; }
@@ -577,6 +729,12 @@
       .focused-headline, .headline-return .return-headline { font-size: 1.4rem; }
       #focused, #layers { padding: 2rem 1.5rem; }
       .article-image { max-height: 200px; }
+      #chat-panel {
+        width: calc(100vw - 1.5rem);
+        right: 0.75rem;
+        bottom: 0.75rem;
+        height: 380px;
+      }
     }
   </style>
 </head>
@@ -665,6 +823,19 @@
         <button id="home-btn">Home</button>
       </div>
     </div>
+  </div>
+
+  <!-- ── Chat Panel (persistent companion) ── -->
+  <div id="chat-panel">
+    <div class="chat-header" id="chat-header">
+      <span class="chat-title">Guide</span>
+      <button class="chat-toggle" id="chat-toggle" aria-label="Toggle chat">&minus;</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <form class="chat-form" id="chat-form">
+      <textarea class="chat-input" id="chat-input" rows="1" placeholder="Type a reply…" autocomplete="off"></textarea>
+      <button type="submit" class="chat-send" id="chat-send">Send</button>
+    </form>
   </div>
 
   <script>
@@ -841,6 +1012,8 @@
         const unveil = document.getElementById('unveil-btn');
         setTimeout(() => summary && summary.classList.add('visible'), 1400);
         setTimeout(() => unveil && unveil.classList.add('visible'), 2000);
+        // Fire up the chat companion for the main article flow
+        setTimeout(() => { showChat(); setStage('focused'); }, 1800);
       } else {
         const backBtn = document.getElementById('back-archive-btn');
         setTimeout(() => backBtn && backBtn.classList.add('visible'), 1200);
@@ -899,6 +1072,7 @@
             target.style.transition = '';
             target.style.transform = '';
             target.style.opacity = '';
+            setStage('layer1');
           }, 850);
         }
       }, 700);
@@ -943,6 +1117,7 @@
             next.style.opacity = '1';
             next.classList.add('visible');
             currentLayer = nextNum;
+            setStage('layer' + nextNum);
 
             setTimeout(() => {
               next.style.display = '';
@@ -1021,6 +1196,7 @@
             setTimeout(() => {
               headlineReturn.style.transition = '';
               headlineReturn.style.transform = '';
+              setStage('return');
             }, 1050);
           });
         });
@@ -1042,7 +1218,7 @@
         l.style.transition = '';
         l.getAnimations && l.getAnimations().forEach(a => a.cancel());
       });
-      setTimeout(() => showLayer(1), 200);
+      setTimeout(() => { showLayer(1); currentStage = 'layer1'; }, 200);
     });
 
     // ── Home ──
@@ -1089,6 +1265,7 @@
         focusedInner.style.opacity = '';
         focused.classList.add('active');
         currentLayer = 0;
+        currentStage = 'focused';
         return;
       }
 
@@ -1119,6 +1296,7 @@
         prev.style.opacity = '1';
         prev.classList.add('visible');
         currentLayer = prevNum;
+        currentStage = 'layer' + prevNum;
 
         setTimeout(() => {
           prev.style.display = '';
@@ -1157,7 +1335,155 @@
       landing.classList.remove('recede');
       currentLayer = 0;
       currentArticle = null;
+      resetChat();
     }
+
+    // ── Chat ──
+    const STAGE_OPENERS = {
+      focused: "Before we unveil what this headline leaves out — what's your gut reaction to it? No right answer. Just whatever comes up first.",
+      layer1: "This layer puts faces on the numbers. Something here will probably land harder than the rest. What is it for you?",
+      layer2: "Now we're looking at the system the headline sits inside. What's starting to connect for you — or what still feels off?",
+      layer3: "Numbers can feel clinical, but these say something pretty clear. Any of them shift how you read the original headline?",
+      return: "Same headline you started with. What reads differently now than it did the first time?"
+    };
+
+    const STAGE_LABELS = {
+      focused: "Reading the original headline (no context yet)",
+      layer1: "Layer 1 — The Human Story",
+      layer2: "Layer 2 — The Systemic Context",
+      layer3: "Layer 3 — The Data",
+      return: "Back to the original headline, after all three layers"
+    };
+
+    const conversationHistory = [];
+    const seenStages = new Set();
+    let currentStage = null;
+    let isLoading = false;
+
+    const chatPanel = document.getElementById('chat-panel');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatHeader = document.getElementById('chat-header');
+    const chatToggle = document.getElementById('chat-toggle');
+
+    function showChat() { chatPanel.classList.add('visible'); }
+    function hideChat() { chatPanel.classList.remove('visible'); }
+
+    function renderMessage(role, content) {
+      const el = document.createElement('div');
+      el.className = 'chat-msg ' + role;
+      el.textContent = content;
+      chatMessages.appendChild(el);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return el;
+    }
+
+    function addMessage(role, content) {
+      conversationHistory.push({ role, content });
+      renderMessage(role, content);
+    }
+
+    function addLoading() {
+      const el = document.createElement('div');
+      el.className = 'chat-msg assistant loading';
+      el.id = 'chat-loading';
+      el.textContent = '…';
+      chatMessages.appendChild(el);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeLoading() {
+      const el = document.getElementById('chat-loading');
+      if (el) el.remove();
+    }
+
+    function setStage(stageKey) {
+      currentStage = stageKey;
+      if (seenStages.has(stageKey)) return;
+      seenStages.add(stageKey);
+      const opener = STAGE_OPENERS[stageKey];
+      if (opener) addMessage('assistant', opener);
+    }
+
+    function resetChat() {
+      conversationHistory.length = 0;
+      seenStages.clear();
+      currentStage = null;
+      chatMessages.innerHTML = '';
+      hideChat();
+    }
+
+    async function sendChat(text) {
+      if (isLoading || !text.trim()) return;
+      isLoading = true;
+      chatSend.disabled = true;
+
+      addMessage('user', text);
+      addLoading();
+
+      try {
+        const res = await fetch('/.netlify/functions/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: conversationHistory,
+            layerContext: STAGE_LABELS[currentStage] || ''
+          })
+        });
+        const data = await res.json();
+        removeLoading();
+        if (!res.ok) {
+          renderMessage('assistant', '[Error: ' + (data.error || 'Could not reach the assistant.') + ']');
+        } else {
+          addMessage('assistant', data.content || '(No response)');
+        }
+      } catch (err) {
+        removeLoading();
+        renderMessage('assistant', '[Error: ' + err.message + ']');
+      } finally {
+        isLoading = false;
+        chatSend.disabled = false;
+        chatInput.focus();
+      }
+    }
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+      chatInput.value = '';
+      chatInput.style.height = '';
+      sendChat(text);
+    });
+
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chatForm.requestSubmit();
+      }
+    });
+
+    chatInput.addEventListener('input', () => {
+      chatInput.style.height = 'auto';
+      chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+    });
+
+    function toggleMinimize() {
+      chatPanel.classList.toggle('minimized');
+      chatToggle.textContent = chatPanel.classList.contains('minimized') ? '+' : '\u2212';
+    }
+
+    chatHeader.addEventListener('click', (e) => {
+      if (e.target.closest('#chat-toggle')) return;
+      toggleMinimize();
+    });
+
+    chatToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMinimize();
+    });
 
     // ── Initialize ──
     buildArchive();
