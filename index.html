@@ -742,6 +742,21 @@
     }
 
     .tap-tooltip-close:hover { color: var(--text); }
+
+    .bouncing-dots { display: inline-flex; gap: 3px; align-items: center; height: 1em; }
+    .bouncing-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6a6a6a;
+      animation: dot-bounce 1.2s ease-in-out infinite;
+    }
+    .bouncing-dots span:nth-child(2) { animation-delay: 0.15s; }
+    .bouncing-dots span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
   </style>
 </head>
 <body>
@@ -1482,7 +1497,7 @@
         tooltipEl = document.createElement('div');
         tooltipEl.className = 'tap-tooltip';
         tooltipEl.innerHTML = '<button class="tap-tooltip-close">&times;</button>' +
-          '';
+          '<span class="bouncing-dots"><span></span><span></span><span></span></span>';
         span.appendChild(tooltipEl);
 
         tooltipEl.querySelector('.tap-tooltip-close').addEventListener('click', (ev) => {
