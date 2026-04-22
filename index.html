@@ -901,7 +901,7 @@
       <div class="layer-number">Layer 1 &mdash; The Human Story</div>
       <h3 class="layer-title">What it means to lose a bed</h3>
       <div class="layer-body">
-        <p>Behind the <b>number 280</b> are people. People who stood in line at 6 a.m. People who finally had a place to leave a bag while they looked for work. People who slept somewhere warm for the first time in months.</p>
+        <p>Behind the <b><span id="tap-number-280" style="text-decoration:underline;text-decoration-color:var(--accent-dim);text-underline-offset:3px;color:var(--accent);cursor:pointer">number 280</span></b> are people. People who stood in line at 6 a.m. People who finally had a place to leave a bag while they looked for work. People who slept somewhere warm for the first time in months.</p>
         <p>A shelter bed is not just a bed. For many, it is the first stable point in a long stretch of instability, a place to shower, to receive mail, to be found by a caseworker. When that bed disappears, the person does not. They go back to a tent, a doorway, or nowhere at all.</p>
         <p>The <b>400 people on the waitlist</b> are not an abstraction. Each one has a name, a history, and a reason they ended up asking the city for help. The headline tells us about policy. It does not tell us about them.</p>
       </div>
@@ -1768,6 +1768,39 @@
         safeStorage.clearAll();
       });
     }
+
+    // ── "number 280" tap handler ──
+    (function () {
+      const span = document.getElementById('tap-number-280');
+      let fetched = false;
+      span.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        if (fetched) return;
+        fetched = true;
+
+        const parentP = span.closest('p');
+        const respDiv = document.createElement('div');
+        respDiv.style.cssText = 'font-size:0.85rem;font-style:italic;color:var(--text-dim);margin-top:0.5rem';
+        respDiv.textContent = '…';
+        parentP.after(respDiv);
+
+        try {
+          const res = await fetch('/.netlify/functions/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              messages: [{ role: 'user', content: 'Word tapped: number 280. Layer: 1. Article: 711 Post Street shelter closure in San Francisco.' }],
+              layerContext: 'Request type: word-tap. Layer 1. The reader tapped: number 280.'
+            })
+          });
+          const data = await res.json();
+          respDiv.textContent = data.content || '';
+        } catch (err) {
+          respDiv.remove();
+          fetched = false;
+        }
+      });
+    })();
 
     // ── Initialize ──
     buildArchive();
