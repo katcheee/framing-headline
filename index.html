@@ -757,9 +757,77 @@
       0%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-6px); }
     }
+
+    /* ── Opening overlay ── */
+    .opening-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      transition: opacity 0.6s ease;
+    }
+
+    .opening-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .opening-question {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--text);
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.45;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .opening-input {
+      width: 400px;
+      max-width: 90vw;
+      padding: 0.7rem 0.8rem;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      outline: none;
+      margin-bottom: 1rem;
+    }
+
+    .opening-input::placeholder { color: var(--text-muted); }
+    .opening-input:focus { border-color: var(--accent-dim); }
+
+    .opening-submit {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      padding: 0.5rem 1.4rem;
+      border-radius: 0;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .opening-submit:hover { border-color: var(--accent-dim); }
+
   </style>
 </head>
 <body>
+
+  <!-- ── Opening Overlay ── -->
+  <div class="opening-overlay" id="opening-overlay">
+    <p class="opening-question">When you walk past someone experiencing homelessness, what goes through your mind?</p>
+    <input class="opening-input" id="opening-input" type="text" placeholder="" autocomplete="off">
+    <button class="opening-submit" id="opening-submit">Continue</button>
+  </div>
 
   <!-- ── Landing Page ── -->
   <div id="landing">
@@ -797,10 +865,139 @@
     <div class="layer layer-1" data-layer="1">
       <div class="layer-number">Layer 1 &mdash; The Human Story</div>
       <h3 class="layer-title">What it means to lose a bed</h3>
-      <div class="layer-body">
-        <p>Behind the <b><span id="tap-number-280" style="position:relative;text-decoration:underline;text-decoration-color:var(--accent-dim);text-underline-offset:3px;color:var(--accent);cursor:pointer">number 280</span></b> are people. People who stood in line at 6 a.m. People who finally had a place to leave a bag while they looked for work. People who slept somewhere warm for the first time in months.</p>
-        <p>A shelter bed is not just a bed. For many, it is the first stable point in a long stretch of instability, a place to shower, to receive mail, to be found by a caseworker. When that bed disappears, the person does not. They go back to a tent, a doorway, or nowhere at all.</p>
-        <p>The <b>400 people on the waitlist</b> are not an abstraction. Each one has a name, a history, and a reason they ended up asking the city for help. The headline tells us about policy. It does not tell us about them.</p>
+      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:0.5rem">
+
+        <!-- Element 1: Patrick Fealey -->
+        <div id="l1-patrick" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <img src="Images/patrick.jpg" alt="Patrick Fealey" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
+          <div style="flex:1">
+            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem">Patrick Fealey</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem">Former Reporter, Boston Globe and Reuters</div>
+            <div style="font-family:var(--serif);font-size:0.95rem;font-style:italic;color:var(--text-dim);line-height:1.6;margin-bottom:0.75rem">&ldquo;Denying someone a place to exist is not just a housing failure. It is a denial of personhood.&rdquo;</div>
+            <a href="https://www.esquire.com/news-politics/a60948625/homeless-invisible-man/" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--accent);text-decoration:none">Read his story in Esquire &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Element 2: Typographic statistic -->
+        <div id="l1-stat" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <div style="font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--text);line-height:1">400</div>
+          <div style="color:var(--text-dim);font-size:0.9rem;margin-top:0.5rem;line-height:1.5">people already on the citywide waitlist for a shelter bed.</div>
+          <div style="color:var(--text-muted);font-size:0.75rem;font-style:italic;margin-top:0.4rem">Before this headline was written.</div>
+        </div>
+
+        <!-- Element 3: Three words -->
+        <div style="display:flex;justify-content:center;gap:2.5rem;margin-bottom:3.5rem;position:relative">
+          <span id="l1-word-shower" style="font-family:var(--serif);font-size:1.4rem;color:var(--text-dim);cursor:pointer">Shower.</span>
+          <span id="l1-word-mail" style="font-family:var(--serif);font-size:1.4rem;color:var(--text-dim);cursor:pointer">Mail.</span>
+          <span id="l1-word-caseworker" style="font-family:var(--serif);font-size:1.4rem;color:var(--text-dim);cursor:pointer">Caseworker.</span>
+        </div>
+
+        <!-- Element 4: Visual ratio -->
+        <div id="l1-grid" style="text-align:center;margin-bottom:1rem;cursor:pointer;position:relative">
+          <div style="display:inline-grid;grid-template-columns:repeat(10,18px);gap:3px">
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--accent)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+            <div style="width:18px;height:18px;background:var(--border)"></div>
+          </div>
+          <div style="color:var(--text-dim);font-size:0.85rem;margin-top:0.75rem;line-height:1.5">For every 100 extremely low income households, only 35 affordable units exist.</div>
+        </div>
+
       </div>
       <div class="layer-advance">
         <button class="layer-advance-btn" data-next="2">Continue &rarr;</button>
@@ -810,11 +1007,40 @@
     <div class="layer layer-2" data-layer="2">
       <div class="layer-number">Layer 2 &mdash; The Systemic Context</div>
       <h3 class="layer-title">Why "more services" is not a simple trade</h3>
-      <div class="layer-body">
-        <p>The city's plan assumes that treatment-based housing can simply replace traditional shelter. <b>Treatment-based housing requires residents to be enrolled in or actively pursuing drug or mental health treatment as a condition of having a bed.</b> But not everyone experiencing homelessness has a substance use disorder or a diagnosed mental health condition. Many are homeless because of eviction, job loss, domestic violence, or medical debt. For them, a treatment bed comes with conditions they don't qualify for or aren't ready to meet. <b>It is not a step up. It is a different line entirely.</b></p>
-        <p>Closing a shelter before alternatives are fully operational is not a new pattern in San Francisco. Each administration reframes the approach, Housing First, treatment first, accountability, while <b>the fundamental shortage of affordable housing remains unchanged.</b></p>
-        <p>As advocate Lukas Illa put it, when cities remove low-barrier options without creating accessible alternatives, the people who don't qualify for treatment-based housing don't disappear. They return to the street, where surviving in public space is increasingly treated as a crime.</p>
-        <p class="layer-quote">"Where are they going to go? If the answer is jail, then say that."</p>
+      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:0.5rem">
+
+        <!-- Element 1: Mona -->
+        <div id="l2-mona" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <img src="Images/mona.png" alt="Mona" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
+          <div style="flex:1">
+            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem">Mona</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.5">Became homeless after the LA wildfires despite holding a master&rsquo;s degree in mathematics and engineering.</div>
+            <a href="https://www.youtube.com/watch?v=nT3VGI0V5Rs&t=258s" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--accent);text-decoration:none">Watch her interview on YouTube &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Element 2: Revolving Door -->
+        <div id="l2-door" style="text-align:center;margin-bottom:3.5rem">
+          <img id="l2-door-img" src="Images/revolving-door.png" alt="The Revolving Door" style="width:100%;max-width:560px;display:block;margin:0 auto;cursor:pointer;transition:opacity 0.4s ease">
+          <div id="l2-door-label" style="color:var(--text-muted);font-size:0.75rem;margin-top:0.6rem">Click to see the cycle.</div>
+        </div>
+
+        <!-- Element 3: 1 in 3 statistic -->
+        <div id="l2-stat" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <div style="font-family:var(--serif);font-size:4rem;font-weight:300;color:var(--text);line-height:1">1 in 3</div>
+          <div style="color:var(--text-dim);font-size:0.9rem;margin-top:0.5rem;line-height:1.5">people released from state custody transition directly into homelessness.</div>
+        </div>
+
+        <!-- Element 4: Illa quote trigger -->
+        <div id="l2-illa" style="text-align:center;margin-bottom:1rem;position:relative">
+          <div id="l2-illa-trigger" style="color:var(--text-muted);font-size:0.85rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;display:inline-block">Hear from an advocate &rarr;</div>
+          <div id="l2-illa-quote" style="opacity:0;max-height:0;overflow:hidden;transition:opacity 0.5s ease,max-height 0.5s ease;margin-top:1rem">
+            <div style="font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--text);line-height:1.5">&ldquo;Where are they going to go? If the answer is jail, then say that.&rdquo;</div>
+            <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.5rem">&mdash; Lukas Illa, Coalition on Homelessness SF</div>
+            <div id="l2-illa-close" style="color:var(--text-muted);font-size:0.75rem;margin-top:0.6rem;cursor:pointer;display:inline-block">close</div>
+          </div>
+        </div>
+
       </div>
       <div class="layer-advance">
         <button class="layer-advance-btn" data-next="3">Continue &rarr;</button>
@@ -824,11 +1050,54 @@
     <div class="layer layer-3" data-layer="3">
       <div class="layer-number">Layer 3 &mdash; The Data</div>
       <h3 class="layer-title">What the numbers say</h3>
-      <div class="layer-body">
-        <p><b>711 Post Street</b> is a 280-bed shelter currently housing people experiencing homelessness in Lower Nob Hill. It closes in March 2027.</p>
-        <p>As of this article, <b>nearly 400 people are already on the citywide waitlist</b> for a shelter bed. That means demand already exceeds supply before this closure even takes effect.</p>
-        <p>The mayor's office says a <b>net 202 beds have been added</b> since Lurie took office. But that number was calculated before this closure was announced. Once 711 Post shuts down, <b>roughly 250 of those beds are gone, erasing the net gain entirely.</b></p>
-        <p>San Francisco's <b>median rent sits above $3,000 a month.</b> A person working full time at minimum wage takes home roughly <b>$3,400 a month before taxes.</b> No amount of shelter restructuring changes that math. <b>And until the math changes, the waitlist will keep growing.</b></p>
+      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:0.5rem">
+
+        <!-- Element 1: Soulieo -->
+        <div id="l3-soulieo" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <img src="Images/soulieo.png" alt="Soulieo" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
+          <div style="flex:1">
+            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem">Soulieo</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.5">Experienced homelessness for 10 years while working two jobs. Now housed, running marathons, and building a nonprofit.</div>
+          </div>
+        </div>
+
+        <!-- Element 2: Rent vs Wages -->
+        <div id="l3-rent" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <div style="display:inline-flex;gap:2.5rem;align-items:flex-end;height:180px">
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <div style="width:40px;height:150px;background:var(--accent-dim)"></div>
+              <div style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem">$3,000</div>
+              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.2rem">Median Rent</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <div style="width:40px;height:170px;background:var(--border)"></div>
+              <div style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem">$3,400</div>
+              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.2rem">Minimum Wage Take-Home</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 3: 280 vs 400 -->
+        <div id="l3-beds" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
+          <div style="display:inline-flex;align-items:center;gap:2rem">
+            <div style="text-align:center">
+              <div style="font-family:var(--serif);font-size:4rem;font-weight:300;color:var(--accent-dim);line-height:1">280</div>
+              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.3rem">beds closing</div>
+            </div>
+            <div style="color:var(--text-muted);font-size:1.5rem;font-weight:300">vs</div>
+            <div style="text-align:center">
+              <div style="font-family:var(--serif);font-size:4rem;font-weight:300;color:var(--text);line-height:1">400</div>
+              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.3rem">people on the waitlist</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 4: 63% statistic -->
+        <div id="l3-pct" style="text-align:center;margin-bottom:1rem;cursor:pointer;position:relative">
+          <div style="font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--text);line-height:1">63%</div>
+          <div style="color:var(--text-dim);font-size:0.9rem;margin-top:0.5rem;line-height:1.5">of people experiencing homelessness are Black or Hispanic and Latinx.</div>
+        </div>
+
       </div>
       <div class="layer-advance">
         <button class="layer-advance-btn" id="finish-btn">Continue &rarr;</button>
@@ -840,28 +1109,20 @@
         Mayor Lurie says he's trading S.F. shelter&nbsp;beds for sites with more services. Critics&nbsp;aren't convinced.
       </h2>
 
-      <div class="ways-in">
-        <div class="ways-in-label">If this sat with you, here are three ways in</div>
-        <div class="ways-in-grid">
-          <a class="way-in" href="https://www.cohsf.org/" target="_blank" rel="noopener">
-            <div class="way-in-verb">Stand with</div>
-            <div class="way-in-name">Coalition on Homelessness SF</div>
-            <div class="way-in-desc">The advocacy org pushing hardest on SF's shelter policy.</div>
-          </a>
-          <a class="way-in" href="https://www.glide.org/" target="_blank" rel="noopener">
-            <div class="way-in-verb">Show up</div>
-            <div class="way-in-name">GLIDE</div>
-            <div class="way-in-desc">Daily meals, harm reduction, direct services in the Tenderloin.</div>
-          </a>
-          <a class="way-in" href="https://sfbos.org/" target="_blank" rel="noopener">
-            <div class="way-in-verb">Speak up</div>
-            <div class="way-in-name">SF Board of Supervisors</div>
-            <div class="way-in-desc">Contact your supervisor about the 711 Post closure.</div>
-          </a>
-        </div>
+      <!-- Closing sentence (Step 2) -->
+      <div id="closing-sentence" style="font-family:var(--serif);font-size:1rem;color:var(--text-dim);text-align:center;margin-top:2rem;line-height:1.6;opacity:0;transition:opacity 0.5s ease"></div>
+
+      <!-- Entry point (Step 3) -->
+      <div id="entry-point-section" style="text-align:center;margin-top:2rem;opacity:0;transition:opacity 0.5s ease">
+        <div style="font-family:var(--sans);font-size:0.85rem;color:var(--text-dim);margin-bottom:1rem">What feels most within reach for you right now?</div>
+        <input id="entry-input" type="text" autocomplete="off" style="width:400px;max-width:90vw;padding:0.7rem 0.8rem;background:var(--bg-light);border:1px solid var(--border);border-radius:0;color:var(--text);font-family:var(--sans);font-size:0.9rem;outline:none;display:block;margin:0 auto 1rem">
+        <button id="entry-submit" style="background:none;border:1px solid var(--border);color:var(--accent);font-family:var(--sans);font-size:0.8rem;padding:0.5rem 1.4rem;border-radius:0;cursor:pointer;transition:border-color 0.2s">Continue</button>
       </div>
 
-      <div class="return-nav">
+      <!-- Next step (Step 4) -->
+      <div id="next-step" style="font-family:var(--serif);font-size:0.95rem;color:var(--text-dim);text-align:center;margin-top:1.5rem;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto;opacity:0;transition:opacity 0.5s ease"></div>
+
+      <div class="return-nav" style="animation:none;opacity:0;transition:opacity 0.5s ease">
         <button id="back-btn">&larr; Back to layers</button>
         <button id="home-btn">Home</button>
       </div>
@@ -869,6 +1130,55 @@
   </div>
 
   <script>
+    // ── Opening overlay ──
+    (function () {
+      const overlay = document.getElementById('opening-overlay');
+      const input = document.getElementById('opening-input');
+      const submitBtn = document.getElementById('opening-submit');
+
+      // If already answered, skip overlay entirely
+      let existing = null;
+      try { existing = localStorage.getItem('openingResponse'); } catch (e) {}
+
+      if (existing) {
+        overlay.remove();
+      } else {
+        function handleSubmit() {
+          const response = input.value.trim();
+          if (!response) return;
+
+          try { localStorage.setItem('openingResponse', response); } catch (e) {}
+
+          submitBtn.disabled = true;
+
+          fetch('/.netlify/functions/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              messages: [{ role: 'user', content: 'Opening response: ' + response }],
+              layerContext: 'The reader has just answered the opening prompt. Store this perspective silently. This will be referenced at the end of the experience. Acknowledge with one word only: noted.'
+            })
+          }).then(function () {
+            fadeOut();
+          }).catch(function () {
+            fadeOut();
+          });
+
+          function fadeOut() {
+            overlay.classList.add('fade-out');
+            setTimeout(function () {
+              overlay.remove();
+            }, 600);
+          }
+        }
+
+        submitBtn.addEventListener('click', handleSubmit);
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') handleSubmit();
+        });
+      }
+    })();
+
     // ── Article Data ──
     const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
@@ -1481,53 +1791,305 @@
       });
     }
 
-    // ── "number 280" tap tooltip ──
+    // ── Layer 1 infographic popups ──
     (function () {
-      const span = document.getElementById('tap-number-280');
-      let tooltipEl = null;
+      var activePopup = null;
 
-      function closeTooltip() {
-        if (tooltipEl) { tooltipEl.remove(); tooltipEl = null; }
+      function closePopup() {
+        if (!activePopup) return;
+        activePopup.remove();
+        activePopup = null;
       }
 
-      span.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        if (tooltipEl) return;
-
-        tooltipEl = document.createElement('div');
-        tooltipEl.className = 'tap-tooltip';
-        tooltipEl.innerHTML = '<button class="tap-tooltip-close">&times;</button>' +
-          '<span class="bouncing-dots"><span></span><span></span><span></span></span>';
-        span.appendChild(tooltipEl);
-
-        tooltipEl.querySelector('.tap-tooltip-close').addEventListener('click', (ev) => {
-          ev.stopPropagation();
-          closeTooltip();
+      function showPopup(anchor, html) {
+        closePopup();
+        var pop = document.createElement('div');
+        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(26,26,29,0.95);color:var(--text);border:1px solid var(--border);padding:1rem 1.25rem;max-width:320px;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);top:100%;margin-top:8px';
+        var closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
+        closeBtn.addEventListener('click', function (ev) { ev.stopPropagation(); closePopup(); });
+        pop.appendChild(closeBtn);
+        var body = document.createElement('div');
+        body.style.cssText = 'padding-right:1rem';
+        body.innerHTML = html;
+        pop.appendChild(body);
+        anchor.appendChild(pop);
+        activePopup = pop;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { if (pop) pop.style.opacity = '1'; });
         });
+      }
 
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => { if (tooltipEl) tooltipEl.classList.add('visible'); });
-        });
-
-        try {
-          const res = await fetch('/.netlify/functions/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              messages: [{ role: 'user', content: 'Word tapped: number 280. Layer: 1. Article: 711 Post Street shelter closure in San Francisco.' }],
-              layerContext: 'Request type: word-tap. Layer 1. The reader tapped: number 280.'
-            })
-          });
-          const data = await res.json();
-          if (tooltipEl) {
-            const close = tooltipEl.querySelector('.tap-tooltip-close');
-            tooltipEl.textContent = data.content || '';
-            tooltipEl.prepend(close);
-          }
-        } catch (err) {
-          closeTooltip();
-        }
+      document.addEventListener('click', function (e) {
+        if (activePopup && !activePopup.contains(e.target)) closePopup();
       });
+
+      // Element 1: Patrick
+      document.getElementById('l1-patrick').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'Patrick Fealey reported for the Boston Globe and Reuters for years. After a Bipolar I diagnosis at 29, he lost the ability to work. He now lives out of his car and wrote about it for Esquire.' +
+          '<div style="margin-top:0.6rem"><a href="https://www.esquire.com/news-politics/a62875397/homelessness-in-america/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:0.8rem">Read his story here &rarr;</a></div>');
+      });
+
+      // Element 2: 400 stat
+      document.getElementById('l1-stat').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'That number existed before this closure was announced. The city calculated its net gain of 202 beds before accounting for the 280 beds at 711 Post Street that are closing in March 2027.');
+      });
+
+      // Element 3: Three words
+      document.getElementById('l1-word-shower').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this.parentElement, 'Without a shelter address, access to basic hygiene becomes a daily negotiation with public spaces that increasingly criminalize it.');
+      });
+
+      document.getElementById('l1-word-mail').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this.parentElement, 'Without a mailing address you cannot receive benefits, apply for jobs, or access most government services.');
+      });
+
+      document.getElementById('l1-word-caseworker').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this.parentElement, 'A caseworker is often the only person in the system whose job is to know your name and find you a way out.');
+      });
+
+      // Element 4: Grid
+      document.getElementById('l1-grid').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'For every 100 extremely low income households in America, there are only 35 affordable units available. The other 65 are competing for what does not exist.');
+      });
+    })();
+
+    // ── Layer 2 infographic popups ──
+    (function () {
+      var activePopup = null;
+
+      function closePopup() {
+        if (!activePopup) return;
+        activePopup.remove();
+        activePopup = null;
+      }
+
+      function showPopup(anchor, html, maxW) {
+        closePopup();
+        var pop = document.createElement('div');
+        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(26,26,29,0.95);color:var(--text);border:1px solid var(--border);padding:1rem 1.25rem;max-width:' + (maxW || '320px') + ';font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);top:100%;margin-top:8px';
+        var closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
+        closeBtn.addEventListener('click', function (ev) { ev.stopPropagation(); closePopup(); });
+        pop.appendChild(closeBtn);
+        var body = document.createElement('div');
+        body.style.cssText = 'padding-right:1rem';
+        body.innerHTML = html;
+        pop.appendChild(body);
+        anchor.appendChild(pop);
+        activePopup = pop;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { if (pop) pop.style.opacity = '1'; });
+        });
+      }
+
+      document.addEventListener('click', function (e) {
+        if (activePopup && !activePopup.contains(e.target)) closePopup();
+      });
+
+      // Element 1: Mona
+      document.getElementById('l2-mona').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'Mona has a master\u2019s degree in mathematics and engineering. She became homeless after the LA wildfires destroyed her home. Not because of addiction or mental illness. Because a natural disaster met a system with no safety net ready for her. Even with her education she could not figure out how to navigate it.' +
+          '<div style="margin-top:0.75rem;width:100%;height:180px;overflow:hidden;position:relative"><iframe src="https://www.youtube.com/embed/nT3VGI0V5Rs?start=258&end=268&autoplay=1" style="width:100%;height:300px;border:none;position:absolute;top:50%;left:0;transform:translateY(-50%)" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>');
+      });
+
+      // Element 2: Revolving Door (image → iframe swap)
+      document.getElementById('l2-door-img').addEventListener('click', function () {
+        var img = this;
+        var label = document.getElementById('l2-door-label');
+        img.style.opacity = '0';
+        setTimeout(function () {
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://chip-viewer-08306980.figma.site';
+          iframe.style.cssText = 'width:100%;max-width:560px;height:400px;border:none;display:block;margin:0 auto;opacity:0;transition:opacity 0.4s ease';
+          iframe.allowFullscreen = true;
+          img.parentElement.insertBefore(iframe, img);
+          img.remove();
+          if (label) label.remove();
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { iframe.style.opacity = '1'; });
+          });
+        }, 400);
+      });
+
+      // Element 3: 1 in 3 stat
+      document.getElementById('l2-stat').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'Only 3% of people with serious mental illness were connected to supportive housing after leaving jail. The other 97% returned to the street or a shelter with no sustained support.');
+      });
+
+      // Element 4: Illa quote (inline, not popup)
+      var illaTrigger = document.getElementById('l2-illa-trigger');
+      var illaQuote = document.getElementById('l2-illa-quote');
+      var illaClose = document.getElementById('l2-illa-close');
+
+      illaTrigger.addEventListener('click', function () {
+        illaQuote.style.maxHeight = '300px';
+        illaQuote.style.opacity = '1';
+      });
+
+      illaClose.addEventListener('click', function () {
+        illaQuote.style.opacity = '0';
+        illaQuote.style.maxHeight = '0';
+      });
+    })();
+
+    // ── Layer 3 infographic popups ──
+    (function () {
+      var activePopup = null;
+
+      function closePopup() {
+        if (!activePopup) return;
+        activePopup.remove();
+        activePopup = null;
+      }
+
+      function showPopup(anchor, html) {
+        closePopup();
+        var pop = document.createElement('div');
+        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(26,26,29,0.95);color:var(--text);border:1px solid var(--border);padding:1rem 1.25rem;max-width:320px;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);top:100%;margin-top:8px';
+        var closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
+        closeBtn.addEventListener('click', function (ev) { ev.stopPropagation(); closePopup(); });
+        pop.appendChild(closeBtn);
+        var body = document.createElement('div');
+        body.style.cssText = 'padding-right:1rem';
+        body.innerHTML = html;
+        pop.appendChild(body);
+        anchor.appendChild(pop);
+        activePopup = pop;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { if (pop) pop.style.opacity = '1'; });
+        });
+      }
+
+      document.addEventListener('click', function (e) {
+        if (activePopup && !activePopup.contains(e.target)) closePopup();
+      });
+
+      // Element 1: Soulieo
+      document.getElementById('l3-soulieo').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'Soulieo experienced homelessness for 10 years while working two jobs and doing case management work. He is now housed, running marathons, and building a nonprofit. What stayed with him was not about housing. It was about going through that time without anyone telling him they were proud of him or that they loved him.' +
+          '<div style="margin-top:0.75rem;font-family:var(--serif);font-style:italic;color:var(--text-dim);line-height:1.5">&ldquo;I very rarely hear I love you or I am proud of you, and that affects a person\u2019s mental state.&rdquo;</div>');
+      });
+
+      // Element 2: Rent vs Wages
+      document.getElementById('l3-rent').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'San Francisco median rent sits above $3,000 a month. A person working full time at minimum wage takes home roughly $3,400 a month before taxes. Landlords require you to earn three times the rent to qualify. The math makes it nearly impossible to be low income here.');
+      });
+
+      // Element 3: 280 vs 400
+      document.getElementById('l3-beds').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, '280 beds are closing. 400 people are already on the waitlist. The city claims a net gain of 202 beds since Lurie took office. That number was calculated before this closure was announced.');
+      });
+
+      // Element 4: 63%
+      document.getElementById('l3-pct').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(this, 'These are communities that were already being failed by the housing market, the healthcare system, and the criminal justice system before they became homeless. The failure does not land equally.');
+      });
+    })();
+
+    // ── Return sequence ──
+    (function () {
+      var returnEl = document.getElementById('headline-return');
+      var closingSentenceEl = document.getElementById('closing-sentence');
+      var entrySection = document.getElementById('entry-point-section');
+      var entryInput = document.getElementById('entry-input');
+      var entrySubmit = document.getElementById('entry-submit');
+      var nextStepEl = document.getElementById('next-step');
+      var returnNav = returnEl.querySelector('.return-nav');
+
+      // Watch for headline-return becoming visible
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.attributeName === 'class' && returnEl.classList.contains('visible')) {
+            // Reset elements for a fresh run
+            closingSentenceEl.textContent = '';
+            closingSentenceEl.style.opacity = '0';
+            entrySection.style.opacity = '0';
+            entryInput.value = '';
+            entrySubmit.disabled = false;
+            nextStepEl.textContent = '';
+            nextStepEl.style.opacity = '0';
+            returnNav.style.opacity = '0';
+
+            // Delay to let the headline animation settle
+            setTimeout(runReturnSequence, 1200);
+          }
+        });
+      });
+      observer.observe(returnEl, { attributes: true });
+
+      function runReturnSequence() {
+        // Step 1: Retrieve opening response
+        var openingResponse = 'nothing';
+        try { var stored = localStorage.getItem('openingResponse'); if (stored) openingResponse = stored; } catch (e) {}
+
+        // Step 2: Generate closing sentence
+        fetch('/.netlify/functions/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: [{ role: 'user', content: 'Opening response was: ' + openingResponse + '. Generate one closing sentence that references what this person said at the start. Be specific to them. Not judgmental. Just honest. One sentence only. No preamble.' }],
+            layerContext: 'Request type: closing-sentence. The reader has just finished all three layers and the original headline has returned on screen. Reference their opening response specifically.'
+          })
+        }).then(function (res) { return res.json(); })
+        .then(function (data) {
+          closingSentenceEl.textContent = data.content || '';
+          closingSentenceEl.style.opacity = '1';
+          // Step 3: Show entry point after 1.5s
+          setTimeout(function () { entrySection.style.opacity = '1'; }, 1500);
+        }).catch(function () {
+          // Still show entry point on error
+          closingSentenceEl.style.opacity = '1';
+          setTimeout(function () { entrySection.style.opacity = '1'; }, 1500);
+        });
+      }
+
+      // Step 4: Entry point submit
+      function handleEntrySubmit() {
+        var entryPointResponse = entryInput.value.trim();
+        if (!entryPointResponse) return;
+
+        var openingResponse = 'nothing';
+        try { var stored = localStorage.getItem('openingResponse'); if (stored) openingResponse = stored; } catch (e) {}
+        try { localStorage.setItem('entryPointChosen', entryPointResponse); } catch (e) {}
+
+        entrySubmit.disabled = true;
+
+        fetch('/.netlify/functions/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: [{ role: 'user', content: 'Opening response was: ' + openingResponse + '. Entry point response was: ' + entryPointResponse + '. Generate one specific next step in exactly two sentences. Make it as local to San Francisco as possible. Direct and concrete. Choose from these three options based on what fits best: GLIDE at glide.org for someone who wants to show up in person, Coalition on Homelessness SF at cohsf.org for someone who wants to understand more or take action on policy, SF Board of Supervisors at sfbos.org for someone who wants to use their voice on the 711 Post closure. One door not a menu.' }],
+            layerContext: 'Request type: entry-point. Use both the opening response and the entry point response to choose the most fitting next step.'
+          })
+        }).then(function (res) { return res.json(); })
+        .then(function (data) {
+          nextStepEl.textContent = data.content || '';
+          nextStepEl.style.opacity = '1';
+          setTimeout(function () { returnNav.style.opacity = '1'; }, 1000);
+        }).catch(function () {
+          setTimeout(function () { returnNav.style.opacity = '1'; }, 1000);
+        });
+      }
+
+      entrySubmit.addEventListener('click', handleEntrySubmit);
+      entryInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') handleEntrySubmit(); });
     })();
 
     // ── Initialize ──
