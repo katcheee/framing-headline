@@ -6,7 +6,7 @@
   <title>What Headlines Leave Out</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -30,8 +30,8 @@
     html { font-size: 16px; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: #fcfcfa;
+      color: #2c3a48;
       font-family: var(--sans);
       min-height: 100vh;
       overflow-x: hidden;
@@ -43,6 +43,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      background: #fcfcfa;
       transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -58,11 +59,12 @@
     }
 
     .page-header h1 {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
       font-size: 3rem;
-      font-weight: 600;
+      font-weight: 900;
       line-height: 1.35;
-      color: var(--text);
+      color: #2c3a48;
       max-width: 900px;
       margin: 0 auto;
       letter-spacing: -0.01em;
@@ -70,7 +72,7 @@
 
     .page-header .subtext {
       font-size: 0.9rem;
-      color: var(--text-dim);
+      color: #6b7a8a;
       margin-top: 0.75rem;
       font-weight: 300;
       letter-spacing: 0.02em;
@@ -89,25 +91,25 @@
     /* Archive box */
     .archive {
       flex: 0 0 240px;
-      background: var(--bg-light);
-      border: 1px solid var(--border);
+      background: #f0eeeb;
+      border: 1px solid #d0d8e0;
       border-radius: 0;
       padding: 1.5rem;
       max-height: calc(100vh - 260px);
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
+      scrollbar-color: #c0c8d0 transparent;
     }
 
     .archive::-webkit-scrollbar { width: 5px; }
     .archive::-webkit-scrollbar-track { background: transparent; }
-    .archive::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+    .archive::-webkit-scrollbar-thumb { background: #c0c8d0; border-radius: 0; }
 
     .archive-label {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--text-muted);
+      color: #6b7a8a;
       margin-bottom: 1.25rem;
       font-weight: 500;
     }
@@ -117,7 +119,7 @@
     .archive-year-btn {
       background: none;
       border: none;
-      color: var(--text-dim);
+      color: #6b7a8a;
       font-family: var(--sans);
       font-size: 0.85rem;
       font-weight: 500;
@@ -131,7 +133,7 @@
       transition: color 0.2s;
     }
 
-    .archive-year-btn:hover { color: var(--text); }
+    .archive-year-btn:hover { color: #2c3a48; }
 
     .archive-year-btn .chevron {
       display: inline-block;
@@ -153,7 +155,7 @@
     .archive-month-btn {
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: #8a95a3;
       font-family: var(--sans);
       font-size: 0.7rem;
       text-transform: uppercase;
@@ -168,7 +170,7 @@
       transition: color 0.2s;
     }
 
-    .archive-month-btn:hover { color: var(--text-dim); }
+    .archive-month-btn:hover { color: #6b7a8a; }
     .archive-month-btn .chevron { display: inline-block; font-size: 0.5rem; transition: transform 0.25s ease; }
     .archive-month-btn.open .chevron { transform: rotate(90deg); }
 
@@ -184,7 +186,7 @@
     .archive-headline {
       background: none;
       border: none;
-      color: var(--text);
+      color: #2c3a48;
       font-family: var(--serif);
       font-size: 0.85rem;
       line-height: 1.45;
@@ -192,13 +194,13 @@
       cursor: pointer;
       text-align: left;
       width: 100%;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #d0d8e0;
       transition: color 0.2s;
     }
 
-    .archive-headline:hover { color: var(--accent); }
+    .archive-headline:hover { color: #70b6ff; }
     .archive-headline:last-child { border-bottom: none; }
-    .archive-headline.active { color: var(--accent); }
+    .archive-headline.active { color: #70b6ff; }
 
     /* Featured headline */
     .featured {
@@ -215,7 +217,7 @@
       font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: var(--accent);
+      color: #70b6ff;
       font-weight: 500;
       margin-bottom: 1.25rem;
     }
@@ -233,35 +235,36 @@
     }
 
     .featured-headline {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 900;
       line-height: 1.35;
-      color: var(--text);
+      color: #2c3a48;
       cursor: pointer;
       transition: color 0.3s;
       max-width: 100%;
     }
 
-    .featured-headline:hover { color: var(--accent); }
+    .featured-headline:hover { color: #70b6ff; }
 
     .featured-source {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: #8a95a3;
       margin-top: 1.25rem;
       font-weight: 300;
     }
 
     .featured-date {
       font-size: 0.8rem;
-      color: var(--text-dim);
+      color: #6b7a8a;
       margin-top: 0.35rem;
       font-weight: 300;
     }
 
     .click-hint {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: #8a95a3;
       margin-top: 2.5rem;
       display: flex;
       align-items: center;
@@ -290,7 +293,7 @@
       transition: opacity 0.5s ease 0.3s;
       z-index: 10;
       overflow-y: auto;
-      background: var(--bg);
+      background: #fcfcfa;
     }
 
     #focused.active { opacity: 1; pointer-events: auto; }
@@ -306,17 +309,18 @@
     #focused.active .focused-inner { transform: scale(1) translateY(0); }
 
     .focused-headline {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
       font-size: 3rem;
-      font-weight: 600;
+      font-weight: 900;
       line-height: 1.4;
-      color: var(--text);
+      color: #2c3a48;
       margin-bottom: 1rem;
     }
 
     .focused-date {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: #8a95a3;
       margin-bottom: 2rem;
       font-weight: 300;
     }
@@ -325,7 +329,7 @@
       font-family: var(--serif);
       font-size: 1.05rem;
       line-height: 1.7;
-      color: var(--text-dim);
+      color: #6b7a8a;
       text-align: left;
       margin-bottom: 2rem;
       font-weight: 300;
@@ -333,10 +337,10 @@
 
     .focused-link {
       display: inline-block;
-      color: var(--accent);
+      color: #70b6ff;
       font-size: 0.85rem;
       text-decoration: none;
-      border-bottom: 1px solid var(--accent-dim);
+      border-bottom: 1px solid #80b4f9;
       padding-bottom: 1px;
       margin-bottom: 3rem;
       opacity: 0;
@@ -345,16 +349,16 @@
     }
 
     .focused-link.visible { opacity: 1; transform: translateY(0); }
-    .focused-link:hover { color: #dfc088; }
+    .focused-link:hover { color: #5a9ae0; }
 
     .focused-summary {
       font-size: 0.92rem;
       line-height: 1.75;
-      color: var(--text-dim);
+      color: #6b7a8a;
       text-align: left;
       margin-bottom: 2.5rem;
       padding: 1.25rem 1.5rem;
-      border-left: 2px solid var(--border);
+      border-left: 2px solid #80b4f9;
       opacity: 0;
       transform: translateY(8px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -364,10 +368,10 @@
 
     .unveil-prompt {
       font-size: 0.85rem;
-      color: #ffffff;
+      color: #2f3a47;
       cursor: pointer;
       padding: 0.75rem 1.5rem;
-      border: 1px solid var(--border);
+      border: 1px solid #2f3a47;
       border-radius: 0;
       background: transparent;
       font-family: var(--sans);
@@ -384,25 +388,25 @@
     }
 
     .unveil-prompt:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+      color: #80b4f9;
+      border-color: #80b4f9;
       animation: none;
     }
 
     @keyframes unveil-pulse {
-      0%, 100% { border-color: var(--border); }
-      50% { border-color: #eac75c; }
+      0%, 100% { border-color: #d0d8e0; }
+      50% { border-color: #70b6ff; }
     }
 
     .focused-back-btn {
       position: fixed;
-      top: 1.5rem;
-      left: 1.5rem;
+      top: 1rem;
+      left: 1rem;
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: #8a95a3;
       cursor: pointer;
       padding: 0.55rem 1rem;
-      border: 1px solid var(--border);
+      border: 1px solid #d0d8e0;
       border-radius: 0;
       background: transparent;
       font-family: var(--sans);
@@ -410,16 +414,26 @@
       z-index: 50;
     }
 
-    .focused-back-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+    .focused-back-btn:hover { color: #80b4f9; border-color: #80b4f9; }
+
+    #focused .focused-back-btn {
+      color: #8a95a3;
+      border-color: #d0d8e0;
+    }
+
+    #focused .focused-back-btn:hover {
+      color: #80b4f9;
+      border-color: #80b4f9;
+    }
 
     #layers.on-return #layers-back { display: none; }
 
     .back-archive-btn {
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: #8a95a3;
       cursor: pointer;
       padding: 0.75rem 1.5rem;
-      border: 1px solid var(--border);
+      border: 1px solid #d0d8e0;
       border-radius: 0;
       background: transparent;
       font-family: var(--sans);
@@ -429,7 +443,7 @@
     }
 
     .back-archive-btn.visible { opacity: 1; transform: translateY(0); }
-    .back-archive-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+    .back-archive-btn:hover { color: #70b6ff; border-color: #80b4f9; }
 
     /* ── Layers view ── */
     #layers {
@@ -440,7 +454,7 @@
       transition: opacity 0.5s ease;
       z-index: 20;
       overflow: hidden;
-      background: var(--bg);
+      background: #fcfcfa;
     }
 
     #layers.active { opacity: 1; pointer-events: auto; }
@@ -468,41 +482,42 @@
 
     .layer-1 .layer-number { color: #7eb8c9; }
     .layer-2 .layer-number { color: #c9a87e; }
-    .layer-3 .layer-number { color: #a98ec9; }
+    .layer-3 .layer-number { color: #2c3a48; }
 
     .layer-title {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
       font-size: 1.35rem;
-      font-weight: 600;
+      font-weight: 900;
       margin-bottom: 1.5rem;
-      color: var(--text);
+      color: #2c3a48;
     }
 
     .layer-body {
       font-size: 0.95rem;
       line-height: 1.8;
-      color: var(--text-dim);
+      color: #6b7a8a;
       text-align: left;
     }
 
     .layer-body p { margin-bottom: 1rem; }
     .layer-body p:last-child { margin-bottom: 0; }
     .layer-body strong,
-    .layer-body b { color: var(--text-dim); font-weight: 700; }
+    .layer-body b { color: #6b7a8a; font-weight: 700; }
     .layer-body .layer-quote {
       margin-top: 1.5rem;
       padding-left: 1.25rem;
-      border-left: 2px solid var(--accent-dim);
+      border-left: 2px solid #80b4f9;
       font-style: italic;
-      color: var(--text);
+      color: #2c3a48;
     }
 
     .layer-advance { margin-top: 2.5rem; text-align: center; }
 
     .layer-advance-btn {
       background: none;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
+      border: 1px solid #2f3a47;
+      color: #2f3a47;
       font-family: var(--sans);
       font-size: 0.8rem;
       padding: 0.6rem 1.5rem;
@@ -520,7 +535,316 @@
       pointer-events: auto;
     }
 
-    .layer-advance-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+    .layer-advance-btn:hover { color: #80b4f9; border-color: #80b4f9; }
+
+    /* ── Layer 1: editorial spread ── */
+    .layer.layer-1 {
+      max-width: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      transform: none;
+      background: #fcfcfa;
+      overflow: hidden;
+    }
+
+    .l1-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .l1-header {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .layer-1 .layer-number {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #2c3a48;
+      margin-bottom: 6px;
+    }
+
+    .layer-1 .layer-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 38px;
+      color: #2c3a48;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .l1-stat {
+      position: absolute;
+      top: 289px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .l1-stat-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 120px;
+      font-weight: 900;
+      color: #70b6ff;
+      line-height: 1;
+    }
+
+    .l1-stat-caption {
+      font-size: 20px;
+      color: #2c3a48;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .l1-patrick {
+      position: absolute;
+      left: 75px;
+      top: 350px;
+      width: 428px;
+      height: 500px;
+      z-index: 1;
+    }
+
+    .l1-patrick img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%);
+    }
+
+    .l1-quote-img {
+      position: absolute;
+      left: 392px;
+      top: 564px;
+      width: 420px;
+      z-index: 2;
+    }
+
+    .l1-quote-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .l1-units {
+      position: absolute;
+      left: 1360px;
+      top: 380px;
+      width: 261px;
+      height: 358px;
+    }
+
+    .l1-units img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .l1-words {
+      position: absolute;
+      left: 1059px;
+      top: 82%;
+    }
+
+    .l1-words span {
+      font-family: var(--sans);
+      font-size: 20px;
+      color: #80b4f9;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .layer-1 .layer-advance {
+      position: absolute;
+      left: 45.25%;
+      top: 88.09%;
+      width: 11.81%;
+      height: 4.92%;
+      text-align: center;
+    }
+
+    .layer-1 .layer-advance-btn {
+      color: #2f3a47;
+      border-color: #2f3a47;
+    }
+
+    .layer-1 .layer-advance-btn:hover {
+      color: #80b4f9;
+      border-color: #80b4f9;
+    }
+
+
+    /* ── Layer 2: editorial spread ── */
+    .layer.layer-2 {
+      max-width: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      transform: none;
+      background: #fcfcfa;
+      overflow: hidden;
+    }
+
+    .l2-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .l2-header {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .layer-2 .layer-number {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #2c3a48;
+      margin-bottom: 6px;
+    }
+
+    .layer-2 .layer-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 38px;
+      color: #2c3a48;
+      font-weight: 900;
+    }
+
+    .l2-mona {
+      position: absolute;
+      left: 75px;
+      top: 210px;
+      width: 490px;
+      height: 280px;
+      z-index: 1;
+    }
+
+    .l2-mona img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .l2-caption {
+      position: absolute;
+      left: 500px;
+      top: 270px;
+      width: 380px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: #2c3a48;
+      line-height: 1.6;
+      z-index: 2;
+      background: #fcfcfa;
+      padding: 16px 20px;
+    }
+
+    .l2-quote-mark {
+      position: absolute;
+      right: 160px;
+      top: 260px;
+      width: 160px;
+      z-index: 5;
+    }
+
+    .l2-door {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 55%;
+      height: 55%;
+    }
+
+    .l2-door img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: pointer;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .l2-door iframe {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .l2-stat {
+      position: absolute;
+      left: 380px;
+      top: 560px;
+      text-align: center;
+    }
+
+    .l2-stat-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      color: #70b6ff;
+      line-height: 1;
+    }
+
+    .l2-stat-in {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 60px;
+      font-weight: 700;
+      color: #d0e0fc;
+    }
+
+    .l2-stat-caption {
+      font-size: 18px;
+      color: #2c3a48;
+      margin-top: 12px;
+      line-height: 1.5;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .layer-2 .layer-advance {
+      position: absolute;
+      left: 45.25%;
+      top: 88.09%;
+      width: 11.81%;
+      height: 4.92%;
+      text-align: center;
+    }
+
+    .layer-2 .layer-advance-btn {
+      color: #2f3a47;
+      border-color: #2f3a47;
+    }
+
+    .layer-2 .layer-advance-btn:hover {
+      color: #80b4f9;
+      border-color: #80b4f9;
+    }
 
     /* ── Headline return ── */
     .headline-return {
@@ -537,11 +861,12 @@
     .headline-return.visible { display: block; opacity: 1; }
 
     .headline-return .return-headline {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
       font-size: 3rem;
-      font-weight: 600;
+      font-weight: 900;
       line-height: 1.4;
-      color: var(--text);
+      color: #2c3a48;
     }
 
     .headline-return .return-nav {
@@ -568,7 +893,7 @@
       font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--text-muted);
+      color: #8a95a3;
       margin-bottom: 1.25rem;
       font-weight: 500;
     }
@@ -584,17 +909,17 @@
     .way-in {
       display: block;
       padding: 1rem 1.1rem;
-      background: var(--bg-light);
-      border: 1px solid var(--border);
-      color: var(--text);
+      background: #fff;
+      border: 1px solid #d0d8e0;
+      color: #2c3a48;
       text-decoration: none;
       text-align: left;
       transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
 
     .way-in:hover {
-      border-color: var(--accent-dim);
-      background: var(--bg-card);
+      border-color: #80b4f9;
+      background: #f0eeeb;
       transform: translateY(-2px);
     }
 
@@ -602,29 +927,29 @@
       font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: var(--accent);
+      color: #70b6ff;
       margin-bottom: 0.55rem;
       font-weight: 500;
     }
 
     .way-in-name {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 0.95rem;
-      color: var(--text);
+      color: #2c3a48;
       margin-bottom: 0.4rem;
       line-height: 1.3;
     }
 
     .way-in-desc {
       font-size: 0.76rem;
-      color: var(--text-dim);
+      color: #6b7a8a;
       line-height: 1.45;
     }
 
     .return-nav button {
       background: none;
-      border: 1px solid var(--border);
-      color: var(--text-dim);
+      border: 1px solid #d0d8e0;
+      color: #6b7a8a;
       font-family: var(--sans);
       font-size: 0.8rem;
       padding: 0.6rem 1.5rem;
@@ -633,7 +958,7 @@
       transition: color 0.3s, border-color 0.3s;
     }
 
-    .return-nav button:hover { color: var(--accent); border-color: var(--accent-dim); }
+    .return-nav button:hover { color: #80b4f9; border-color: #80b4f9; }
 
     @keyframes fade-in-up {
       from { opacity: 0; transform: translateY(30px); }
@@ -655,6 +980,150 @@
       #focused, #layers { padding: 2rem 1.5rem; }
       .article-image { max-height: 200px; }
       .ways-in-grid { grid-template-columns: 1fr; }
+
+      /* Layer 1 responsive */
+      .layer.layer-1 { overflow-y: auto; overflow-x: hidden; }
+
+      .l1-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 2rem 1.5rem 3rem;
+        gap: 2rem;
+      }
+
+      .l1-header {
+        position: static;
+        text-align: center;
+      }
+
+      .layer-1 .layer-title {
+        font-size: 1.6rem;
+        white-space: normal;
+      }
+
+      .l1-stat {
+        position: static;
+        transform: none;
+        text-align: center;
+      }
+
+      .l1-stat-number {
+        font-size: 72px;
+      }
+
+      .l1-stat-caption {
+        font-size: 16px;
+      }
+
+      .l1-patrick {
+        position: static;
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+      }
+
+      .l1-patrick img {
+        height: auto;
+      }
+
+      .l1-quote-img {
+        position: static;
+        width: 100%;
+        max-width: 360px;
+      }
+
+      .l1-units {
+        position: static;
+        width: 100%;
+        max-width: 240px;
+        height: auto;
+      }
+
+      .l1-units img {
+        height: auto;
+      }
+
+      .l1-words {
+        position: static;
+        text-align: center;
+      }
+
+      .l1-words span {
+        font-size: 16px;
+      }
+
+      .layer-1 .layer-advance {
+        position: static;
+        width: auto;
+        height: auto;
+        text-align: center;
+      }
+
+      /* Layer 2 responsive */
+      .layer.layer-2 { overflow-y: auto; overflow-x: hidden; }
+
+      .l2-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 2rem 1.5rem 3rem;
+        gap: 2rem;
+      }
+
+      .l2-header { position: static; text-align: center; }
+
+      .layer-2 .layer-title {
+        font-size: 1.6rem;
+        white-space: normal;
+      }
+
+      .l2-mona {
+        position: static;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+      }
+
+      .l2-mona img { height: auto; }
+
+      .l2-caption {
+        position: static;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .l2-quote-mark {
+        position: static;
+        font-size: 100px;
+        text-align: center;
+      }
+
+      .l2-door {
+        position: static;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .l2-stat {
+        position: static;
+        text-align: center;
+      }
+
+      .l2-stat-number span { font-size: 72px !important; }
+      .l2-stat-in { font-size: 24px !important; }
+
+      .l2-stat-caption { font-size: 16px; }
+
+      .layer-2 .layer-advance {
+        position: static;
+        width: auto;
+        height: auto;
+        text-align: center;
+      }
     }
 
     /* ── Resume prompt ── */
@@ -665,30 +1134,30 @@
       align-items: center;
       justify-content: center;
       z-index: 200;
-      background: rgba(26, 26, 29, 0.85);
+      background: rgba(252, 252, 250, 0.9);
       animation: fade-in 0.4s ease;
     }
 
     .resume-prompt-box {
       text-align: center;
       padding: 2rem 2.5rem;
-      border: 1px solid var(--border);
-      background: var(--bg-light);
+      border: 1px solid #d0d8e0;
+      background: #fff;
       max-width: 400px;
     }
 
     .resume-prompt-box p {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 1rem;
-      color: var(--text-dim);
+      color: #6b7a8a;
       margin-bottom: 1.5rem;
       line-height: 1.6;
     }
 
     .resume-prompt-box button {
       background: none;
-      border: 1px solid var(--border);
-      color: var(--text-dim);
+      border: 1px solid #d0d8e0;
+      color: #6b7a8a;
       font-family: var(--sans);
       font-size: 0.8rem;
       padding: 0.6rem 1.5rem;
@@ -699,8 +1168,8 @@
     }
 
     .resume-prompt-box button:hover {
-      color: var(--accent);
-      border-color: var(--accent-dim);
+      color: #80b4f9;
+      border-color: #80b4f9;
     }
 
     /* ── Tap tooltip ── */
@@ -733,7 +1202,7 @@
       right: 6px;
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: #8a95a3;
       cursor: pointer;
       font-size: 0.85rem;
       line-height: 1;
@@ -741,14 +1210,14 @@
       font-family: var(--sans);
     }
 
-    .tap-tooltip-close:hover { color: var(--text); }
+    .tap-tooltip-close:hover { color: #2c3a48; }
 
     .bouncing-dots { display: inline-flex; gap: 3px; align-items: center; height: 1em; }
     .bouncing-dots span {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: #6a6a6a;
+      background: #8a95a3;
       animation: dot-bounce 1.2s ease-in-out infinite;
     }
     .bouncing-dots span:nth-child(2) { animation-delay: 0.15s; }
@@ -762,7 +1231,7 @@
     .opening-overlay {
       position: fixed;
       inset: 0;
-      background: var(--bg);
+      background: #fcfcfa;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -777,46 +1246,47 @@
     }
 
     .opening-question {
-      font-family: var(--serif);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
       font-size: 1.8rem;
-      color: var(--text);
+      color: #2c3a48;
       text-align: center;
       max-width: 600px;
       line-height: 1.45;
       margin-bottom: 1.5rem;
-      font-weight: 400;
+      font-weight: 900;
     }
 
     .opening-input {
       width: 400px;
       max-width: 90vw;
       padding: 0.7rem 0.8rem;
-      background: var(--bg-light);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border: 1px solid #d0d8e0;
       border-radius: 0;
-      color: var(--text);
+      color: #2c3a48;
       font-family: var(--sans);
       font-size: 0.9rem;
       outline: none;
       margin-bottom: 1rem;
     }
 
-    .opening-input::placeholder { color: var(--text-muted); }
-    .opening-input:focus { border-color: var(--accent-dim); }
+    .opening-input::placeholder { color: #8a95a3; }
+    .opening-input:focus { border-color: #80b4f9; }
 
     .opening-submit {
       background: none;
-      border: 1px solid var(--border);
-      color: var(--accent);
+      border: 1px solid #2f3a47;
+      color: #2f3a47;
       font-family: var(--sans);
       font-size: 0.8rem;
       padding: 0.5rem 1.4rem;
       border-radius: 0;
       cursor: pointer;
-      transition: border-color 0.2s;
+      transition: color 0.2s, border-color 0.2s;
     }
 
-    .opening-submit:hover { border-color: var(--accent-dim); }
+    .opening-submit:hover { color: #80b4f9; border-color: #80b4f9; }
 
   </style>
 </head>
@@ -863,201 +1333,106 @@
   <div id="layers">
     <button id="layers-back" class="focused-back-btn">&larr; Back</button>
     <div class="layer layer-1" data-layer="1">
-      <div class="layer-number">Layer 1 &mdash; The Human Story</div>
-      <h3 class="layer-title">What it means to lose a bed</h3>
-      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:0.5rem">
-
-        <!-- Element 1: Patrick Fealey -->
-        <div id="l1-patrick" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <img src="Images/patrick.jpg" alt="Patrick Fealey" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
-          <div style="flex:1">
-            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem">Patrick Fealey</div>
-            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem">Former Reporter, Boston Globe and Reuters</div>
-            <div style="font-family:var(--serif);font-size:0.95rem;font-style:italic;color:var(--text-dim);line-height:1.6;margin-bottom:0.75rem">&ldquo;Denying someone a place to exist is not just a housing failure. It is a denial of personhood.&rdquo;</div>
-            <a href="https://www.esquire.com/news-politics/a60948625/homeless-invisible-man/" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--accent);text-decoration:none">Read his story in Esquire &rarr;</a>
-          </div>
+      <div class="l1-page">
+        <!-- Header -->
+        <div class="l1-header">
+          <div class="layer-number">Layer 1 &mdash; The Human Story</div>
+          <h3 class="layer-title">What it Means to Lose a Bed</h3>
         </div>
 
-        <!-- Element 2: Typographic statistic -->
-        <div id="l1-stat" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <div style="font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--text);line-height:1">400</div>
-          <div style="color:var(--text-dim);font-size:0.9rem;margin-top:0.5rem;line-height:1.5">people already on the citywide waitlist for a shelter bed.</div>
-          <div style="color:var(--text-muted);font-size:0.75rem;font-style:italic;margin-top:0.4rem">Before this headline was written.</div>
+        <!-- Stat block -->
+        <div id="l1-stat" class="l1-stat" style="cursor:pointer">
+          <div class="l1-stat-number">400</div>
+          <div class="l1-stat-caption">people already on the<br>citywide waitlist for a shelter bed.</div>
         </div>
 
-        <!-- Element 3: Three words -->
-        <div style="display:flex;justify-content:center;gap:2.5rem;margin-bottom:3.5rem;position:relative">
-          <span id="l1-word-shower" style="font-family:var(--serif);font-size:1.4rem;color:var(--text-dim);cursor:pointer">Shower.</span>
-          <span id="l1-word-mail" style="font-family:var(--serif);font-size:1.4rem;color:var(--text-dim);cursor:pointer">Mail.</span>
-          <span id="l1-word-caseworker" style="font-family:var(--serif);font-size:1.4rem;color:var(--text-dim);cursor:pointer">Caseworker.</span>
+        <!-- Photo -->
+        <div id="l1-patrick" class="l1-patrick" style="cursor:pointer">
+          <img src="Images/patrick.jpg" alt="Patrick Fealey">
         </div>
 
-        <!-- Element 4: Visual ratio -->
-        <div id="l1-grid" style="text-align:center;margin-bottom:1rem;cursor:pointer;position:relative">
-          <div style="display:inline-grid;grid-template-columns:repeat(10,18px);gap:3px">
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--accent)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-            <div style="width:18px;height:18px;background:var(--border)"></div>
-          </div>
-          <div style="color:var(--text-dim);font-size:0.85rem;margin-top:0.75rem;line-height:1.5">For every 100 extremely low income households, only 35 affordable units exist.</div>
+        <!-- Quote image -->
+        <div id="l1-quote" class="l1-quote-img" style="cursor:pointer">
+          <img src="Images/patrick-quote.jpg" alt="Patrick Fealey quote">
         </div>
 
-      </div>
-      <div class="layer-advance">
-        <button class="layer-advance-btn" data-next="2">Continue &rarr;</button>
+        <!-- Building illustration -->
+        <div id="l1-grid" class="l1-units" style="cursor:pointer">
+          <img src="Images/35units.png" alt="35 affordable units for every 100 households">
+        </div>
+
+        <!-- SHOWER. MAIL. CASEWORKER. -->
+        <div class="l1-words">
+          <span id="l1-word-shower" style="cursor:pointer">SHOWER.</span>
+          <span id="l1-word-mail" style="cursor:pointer">MAIL.</span>
+          <span id="l1-word-caseworker" style="cursor:pointer">CASEWORKER.</span>
+        </div>
+
+        <!-- Continue -->
+        <div class="layer-advance">
+          <button class="layer-advance-btn" data-next="2">Continue &rarr;</button>
+        </div>
       </div>
     </div>
 
     <div class="layer layer-2" data-layer="2">
-      <div class="layer-number">Layer 2 &mdash; The Systemic Context</div>
-      <h3 class="layer-title">Why "more services" is not a simple trade</h3>
-      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:0.5rem">
+      <div class="l2-page">
+        <!-- Header -->
+        <div class="l2-header">
+          <div class="layer-number">Layer 2 &mdash; The Systemic Context</div>
+          <h3 class="layer-title">Why &ldquo;more services&rdquo; is Not a Simple Trade</h3>
+        </div>
 
-        <!-- Element 1: Mona -->
-        <div id="l2-mona" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <img src="Images/mona.png" alt="Mona" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
-          <div style="flex:1">
-            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem">Mona</div>
-            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.5">Became homeless after the LA wildfires despite holding a master&rsquo;s degree in mathematics and engineering.</div>
-            <a href="https://www.youtube.com/watch?v=nT3VGI0V5Rs&t=258s" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--accent);text-decoration:none">Watch her interview on YouTube &rarr;</a>
+        <!-- Mona photo -->
+        <div id="l2-mona" class="l2-mona" style="cursor:pointer">
+          <img src="Images/mona.png" alt="Mona">
+        </div>
+
+        <!-- Mona caption -->
+        <div class="l2-caption">
+          Mona became homeless after the LA wildfires despite holding a master&rsquo;s degree in mathematics and engineering.
+        </div>
+
+        <!-- Decorative quote mark / Illa trigger -->
+        <div id="l2-illa" class="l2-quote-mark">
+          <img src="Images/quotemark.png" alt="quote" id="l2-illa-trigger" style="cursor:pointer; width:160px; display:block;">
+          <div id="l2-illa-quote" style="position:absolute;top:0;right:100%;margin-right:12px;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:20px;color:#2c3a48;line-height:1.55;width:380px;opacity:0;max-height:0;overflow:hidden;transition:opacity 0.5s ease,max-height 0.5s ease;background:#fcfcfa;padding:0 16px">
+            &ldquo;Where are they going to go? If the answer is jail, then say that.&rdquo;
+            <div style="font-family:var(--sans);font-style:normal;font-size:11px;font-weight:700;letter-spacing:0.1em;color:#2c3a48;margin-top:8px;text-transform:uppercase">&mdash; Lukas Illa, Coalition on Homelessness SF</div>
+            <div style="font-family:var(--sans);font-style:normal;font-size:0.75rem;color:#8a95a3;margin-top:0.75rem">Illa said this in direct response to the 711 Post closure and the pattern of shelter closures that preceded it.</div>
+            <div id="l2-illa-close" style="display:none"></div>
           </div>
         </div>
 
-        <!-- Element 2: Revolving Door -->
-        <div id="l2-door" style="text-align:center;margin-bottom:3.5rem">
-          <img id="l2-door-img" src="Images/revolving-door.png" alt="The Revolving Door" style="width:100%;max-width:560px;display:block;margin:0 auto;cursor:pointer;transition:opacity 0.4s ease">
-          <div id="l2-door-label" style="color:var(--text-muted);font-size:0.75rem;margin-top:0.6rem">Click to see the cycle.</div>
+        <!-- Revolving Door -->
+        <div id="l2-door" class="l2-door">
+          <img id="l2-door-img" src="Images/revolving-door.png" alt="The Revolving Door" style="cursor:pointer;transition:opacity 0.4s ease">
         </div>
 
-        <!-- Element 3: 1 in 3 statistic -->
-        <div id="l2-stat" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <div style="font-family:var(--serif);font-size:4rem;font-weight:300;color:var(--text);line-height:1">1 in 3</div>
-          <div style="color:var(--text-dim);font-size:0.9rem;margin-top:0.5rem;line-height:1.5">people released from state custody transition directly into homelessness.</div>
+        <!-- 1 in 3 stat -->
+        <div id="l2-stat" class="l2-stat" style="cursor:pointer">
+          <div class="l2-stat-number"><span style="font-size:120px">1</span> <span class="l2-stat-in">in</span> <span style="font-size:120px">3</span></div>
+          <div class="l2-stat-caption">people released from state<br>custody transition directly<br>into homelessness</div>
         </div>
 
-        <!-- Element 4: Illa quote trigger -->
-        <div id="l2-illa" style="text-align:center;margin-bottom:1rem;position:relative">
-          <div id="l2-illa-trigger" style="color:var(--text-muted);font-size:0.85rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;display:inline-block">Hear from an advocate &rarr;</div>
-          <div id="l2-illa-quote" style="opacity:0;max-height:0;overflow:hidden;transition:opacity 0.5s ease,max-height 0.5s ease;margin-top:1rem">
-            <div style="font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--text);line-height:1.5">&ldquo;Where are they going to go? If the answer is jail, then say that.&rdquo;</div>
-            <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.5rem">&mdash; Lukas Illa, Coalition on Homelessness SF</div>
-            <div id="l2-illa-close" style="color:var(--text-muted);font-size:0.75rem;margin-top:0.6rem;cursor:pointer;display:inline-block">close</div>
-          </div>
+        <!-- Continue -->
+        <div class="layer-advance">
+          <button class="layer-advance-btn" data-next="3">Continue &rarr;</button>
         </div>
-
-      </div>
-      <div class="layer-advance">
-        <button class="layer-advance-btn" data-next="3">Continue &rarr;</button>
       </div>
     </div>
 
     <div class="layer layer-3" data-layer="3">
       <div class="layer-number">Layer 3 &mdash; The Data</div>
       <h3 class="layer-title">What the numbers say</h3>
-      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:0.5rem">
+      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c0c8d0 transparent;padding-right:0.5rem">
 
         <!-- Element 1: Soulieo -->
         <div id="l3-soulieo" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
           <img src="Images/soulieo.png" alt="Soulieo" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
           <div style="flex:1">
-            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem">Soulieo</div>
-            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.5">Experienced homelessness for 10 years while working two jobs. Now housed, running marathons, and building a nonprofit.</div>
+            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#2c3a48;margin-bottom:0.3rem">Soulieo</div>
+            <div style="font-size:0.75rem;color:#6b7a8a;margin-bottom:1rem;line-height:1.5">Experienced homelessness for 10 years while working two jobs. Now housed, running marathons, and building a nonprofit.</div>
           </div>
         </div>
 
@@ -1065,14 +1440,14 @@
         <div id="l3-rent" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
           <div style="display:inline-flex;gap:2.5rem;align-items:flex-end;height:180px">
             <div style="display:flex;flex-direction:column;align-items:center">
-              <div style="width:40px;height:150px;background:var(--accent-dim)"></div>
-              <div style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem">$3,000</div>
-              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.2rem">Median Rent</div>
+              <div style="width:40px;height:150px;background:#70b6ff"></div>
+              <div style="color:#2c3a48;font-size:0.85rem;margin-top:0.5rem">$3,000</div>
+              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.2rem">Median Rent</div>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center">
-              <div style="width:40px;height:170px;background:var(--border)"></div>
-              <div style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem">$3,400</div>
-              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.2rem">Minimum Wage Take-Home</div>
+              <div style="width:40px;height:170px;background:#d0d8e0"></div>
+              <div style="color:#2c3a48;font-size:0.85rem;margin-top:0.5rem">$3,400</div>
+              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.2rem">Minimum Wage Take-Home</div>
             </div>
           </div>
         </div>
@@ -1081,21 +1456,21 @@
         <div id="l3-beds" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
           <div style="display:inline-flex;align-items:center;gap:2rem">
             <div style="text-align:center">
-              <div style="font-family:var(--serif);font-size:4rem;font-weight:300;color:var(--accent-dim);line-height:1">280</div>
-              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.3rem">beds closing</div>
+              <div style="font-family:'Playfair Display',Georgia,serif;font-size:4rem;font-weight:900;color:#70b6ff;line-height:1">280</div>
+              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.3rem">beds closing</div>
             </div>
-            <div style="color:var(--text-muted);font-size:1.5rem;font-weight:300">vs</div>
+            <div style="color:#8a95a3;font-size:1.5rem;font-weight:300">vs</div>
             <div style="text-align:center">
-              <div style="font-family:var(--serif);font-size:4rem;font-weight:300;color:var(--text);line-height:1">400</div>
-              <div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.3rem">people on the waitlist</div>
+              <div style="font-family:'Playfair Display',Georgia,serif;font-size:4rem;font-weight:900;color:#2c3a48;line-height:1">400</div>
+              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.3rem">people on the waitlist</div>
             </div>
           </div>
         </div>
 
         <!-- Element 4: 63% statistic -->
         <div id="l3-pct" style="text-align:center;margin-bottom:1rem;cursor:pointer;position:relative">
-          <div style="font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--text);line-height:1">63%</div>
-          <div style="color:var(--text-dim);font-size:0.9rem;margin-top:0.5rem;line-height:1.5">of people experiencing homelessness are Black or Hispanic and Latinx.</div>
+          <div style="font-family:'Playfair Display',Georgia,serif;font-size:5rem;font-weight:900;color:#2c3a48;line-height:1">63%</div>
+          <div style="color:#6b7a8a;font-size:0.9rem;margin-top:0.5rem;line-height:1.5">of people experiencing homelessness are Black or Hispanic and Latinx.</div>
         </div>
 
       </div>
@@ -1110,17 +1485,17 @@
       </h2>
 
       <!-- Closing sentence (Step 2) -->
-      <div id="closing-sentence" style="font-family:var(--serif);font-size:1rem;color:var(--text-dim);text-align:center;margin-top:2rem;line-height:1.6;opacity:0;transition:opacity 0.5s ease"></div>
+      <div id="closing-sentence" style="font-family:'Playfair Display',Georgia,serif;font-size:1rem;color:#6b7a8a;text-align:center;margin-top:2rem;line-height:1.6;opacity:0;transition:opacity 0.5s ease"></div>
 
       <!-- Entry point (Step 3) -->
       <div id="entry-point-section" style="text-align:center;margin-top:2rem;opacity:0;transition:opacity 0.5s ease">
-        <div style="font-family:var(--sans);font-size:0.85rem;color:var(--text-dim);margin-bottom:1rem">What feels most within reach for you right now?</div>
-        <input id="entry-input" type="text" autocomplete="off" style="width:400px;max-width:90vw;padding:0.7rem 0.8rem;background:var(--bg-light);border:1px solid var(--border);border-radius:0;color:var(--text);font-family:var(--sans);font-size:0.9rem;outline:none;display:block;margin:0 auto 1rem">
-        <button id="entry-submit" style="background:none;border:1px solid var(--border);color:var(--accent);font-family:var(--sans);font-size:0.8rem;padding:0.5rem 1.4rem;border-radius:0;cursor:pointer;transition:border-color 0.2s">Continue</button>
+        <div style="font-family:var(--sans);font-size:0.85rem;color:#6b7a8a;margin-bottom:1rem">What feels most within reach for you right now?</div>
+        <input id="entry-input" type="text" autocomplete="off" style="width:400px;max-width:90vw;padding:0.7rem 0.8rem;background:#fff;border:1px solid #d0d8e0;border-radius:0;color:#2c3a48;font-family:var(--sans);font-size:0.9rem;outline:none;display:block;margin:0 auto 1rem">
+        <button id="entry-submit" style="background:none;border:1px solid #d0d8e0;color:#70b6ff;font-family:var(--sans);font-size:0.8rem;padding:0.5rem 1.4rem;border-radius:0;cursor:pointer;transition:border-color 0.2s">Continue</button>
       </div>
 
       <!-- Next step (Step 4) -->
-      <div id="next-step" style="font-family:var(--serif);font-size:0.95rem;color:var(--text-dim);text-align:center;margin-top:1.5rem;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto;opacity:0;transition:opacity 0.5s ease"></div>
+      <div id="next-step" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;color:#6b7a8a;text-align:center;margin-top:1.5rem;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto;opacity:0;transition:opacity 0.5s ease"></div>
 
       <div class="return-nav" style="animation:none;opacity:0;transition:opacity 0.5s ease">
         <button id="back-btn">&larr; Back to layers</button>
@@ -1187,20 +1562,6 @@
     const MAIN_DETAIL = 'San Francisco is closing 711 Post Street, a 280-bed homeless shelter in Lower Nob Hill, in March 2027. The closure is part of a broader overhaul of the city\u2019s shelter system under Mayor Daniel Lurie, who argues that the city needs fewer traditional shelter beds and more beds tied to drug treatment and mental health services. Two other shelters have already closed in recent months. The mayor\u2019s office says more beds have been added than removed overall since Lurie took office. Homeless advocates are raising concerns about what happens to people who are not ready for or able to access treatment-based housing, particularly as the closure moves forward with nearly 400 people already on the shelter waitlist.';
 
     const ARTICLES = [
-      // ── 2024 ── (placeholders)
-      { id:'24-ph-01', year:2024, month:0, source:'—', date:'January 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-02', year:2024, month:1, source:'—', date:'February 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-03', year:2024, month:2, source:'—', date:'March 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-04', year:2024, month:3, source:'—', date:'April 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-05', year:2024, month:4, source:'—', date:'May 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-06', year:2024, month:5, source:'—', date:'June 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-07', year:2024, month:6, source:'—', date:'July 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-08', year:2024, month:7, source:'—', date:'August 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-09', year:2024, month:8, source:'—', date:'September 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-10', year:2024, month:9, source:'—', date:'October 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-11', year:2024, month:10, source:'—', date:'November 2024', headline:'Placeholder', summary:'' },
-      { id:'24-ph-12', year:2024, month:11, source:'—', date:'December 2024', headline:'Placeholder', summary:'' },
-
       // ── 2025 ── (placeholders)
       { id:'25-ph-01', year:2025, month:0, source:'—', date:'January 2025', headline:'Placeholder', summary:'' },
       { id:'25-ph-02', year:2025, month:1, source:'—', date:'February 2025', headline:'Placeholder', summary:'' },
@@ -1245,7 +1606,7 @@
     // ── Build Archive ──
     function buildArchive() {
       const sidebar = document.getElementById('archive-sidebar');
-      const years = [2026, 2025, 2024];
+      const years = [2026, 2025];
 
       years.forEach(year => {
         const yearDiv = document.createElement('div');
@@ -1396,12 +1757,12 @@
 
         const target = layersView.querySelector('.layer[data-layer="1"]');
         if (target) {
-          target.style.transform = 'translate(-50%, -50%) scale(0)';
+          target.style.transform = lTfm(target, 'scale(0)');
           target.style.opacity = '0';
           target.style.display = 'block';
           target.offsetHeight;
           target.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease';
-          target.style.transform = 'translate(-50%, -50%) scale(1)';
+          target.style.transform = lTfm(target, 'scale(1)');
           target.style.opacity = '1';
           target.classList.add('visible');
           setTimeout(() => {
@@ -1426,6 +1787,17 @@
 
     const CENTER = 'translate(-50%, -50%)';
 
+    // Full-viewport layers (L1, L2) use left:0;top:0;transform:none in CSS,
+    // so animations must NOT include the centering translate.
+    function lBase(el) {
+      return (el.classList.contains('layer-1') || el.classList.contains('layer-2')) ? '' : CENTER;
+    }
+    function lTfm(el, extra) {
+      var b = lBase(el);
+      if (!extra) return b || 'none';
+      return b ? b + ' ' + extra : extra;
+    }
+
     // ── Layer advance: slide current left, bring next from right ──
     document.querySelectorAll('.layer-advance-btn[data-next]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1435,7 +1807,7 @@
 
         if (current && next) {
           current.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
-          current.style.transform = CENTER + ' translateX(-120vw)';
+          current.style.transform = lTfm(current, 'translateX(-120vw)');
           current.style.opacity = '0';
 
           setTimeout(() => {
@@ -1445,12 +1817,12 @@
             current.style.transform = '';
             current.style.opacity = '';
 
-            next.style.transform = CENTER + ' translateX(120vw)';
+            next.style.transform = lTfm(next, 'translateX(120vw)');
             next.style.opacity = '0';
             next.style.display = 'block';
             next.offsetHeight;
             next.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease';
-            next.style.transform = CENTER;
+            next.style.transform = lTfm(next);
             next.style.opacity = '1';
             next.classList.add('visible');
             currentLayer = nextNum;
@@ -1481,11 +1853,11 @@
       function recedeLayer(el) {
         return new Promise(resolve => {
           el.style.display = 'block';
-          el.style.transform = CENTER + ' scale(8)';
+          el.style.transform = lTfm(el, 'scale(8)');
           el.style.opacity = '0';
           el.offsetHeight;
           el.style.transition = 'transform 0.8s cubic-bezier(0.2, 0, 0.3, 1)';
-          el.style.transform = CENTER + ' scale(0)';
+          el.style.transform = lTfm(el, 'scale(0)');
           el.animate([
             { opacity: 0 },
             { opacity: 0, offset: 0.05 },
@@ -1509,7 +1881,7 @@
 
       // Layer 3 is already visible at scale(1) — shrink it to nothing
       layer3.style.transition = 'transform 0.4s ease-in, opacity 0.4s ease';
-      layer3.style.transform = CENTER + ' scale(0)';
+      layer3.style.transform = lTfm(layer3, 'scale(0)');
       layer3.style.opacity = '0';
 
       setTimeout(() => {
@@ -1614,7 +1986,7 @@
       if (!current || !prev) return;
 
       current.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
-      current.style.transform = CENTER + ' translateX(120vw)';
+      current.style.transform = lTfm(current, 'translateX(120vw)');
       current.style.opacity = '0';
 
       setTimeout(() => {
@@ -1624,12 +1996,12 @@
         current.style.transform = '';
         current.style.opacity = '';
 
-        prev.style.transform = CENTER + ' translateX(-120vw)';
+        prev.style.transform = lTfm(prev, 'translateX(-120vw)');
         prev.style.opacity = '0';
         prev.style.display = 'block';
         prev.offsetHeight;
         prev.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease';
-        prev.style.transform = CENTER;
+        prev.style.transform = lTfm(prev);
         prev.style.opacity = '1';
         prev.classList.add('visible');
         currentLayer = prevNum;
@@ -1804,18 +2176,28 @@
       function showPopup(anchor, html) {
         closePopup();
         var pop = document.createElement('div');
-        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(26,26,29,0.95);color:var(--text);border:1px solid var(--border);padding:1rem 1.25rem;max-width:320px;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);top:100%;margin-top:8px';
+        pop.style.cssText = 'position:fixed;z-index:40;background:rgba(255,255,255,0.97);color:#2c3a48;border:1px solid #d0d8e0;padding:1rem 1.25rem;width:450px;max-width:90vw;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;box-shadow:0 4px 16px rgba(0,0,0,0.08)';
         var closeBtn = document.createElement('button');
         closeBtn.innerHTML = '&times;';
-        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
+        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:#8a95a3;cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
         closeBtn.addEventListener('click', function (ev) { ev.stopPropagation(); closePopup(); });
         pop.appendChild(closeBtn);
         var body = document.createElement('div');
         body.style.cssText = 'padding-right:1rem';
         body.innerHTML = html;
         pop.appendChild(body);
-        anchor.appendChild(pop);
+        document.body.appendChild(pop);
         activePopup = pop;
+        var rect = anchor.getBoundingClientRect();
+        var popH = pop.offsetHeight;
+        var popW = pop.offsetWidth;
+        var topPos = rect.top - popH - 8;
+        if (topPos < 8) topPos = rect.bottom + 8;
+        var leftPos = rect.left + rect.width / 2 - popW / 2;
+        if (leftPos < 8) leftPos = 8;
+        if (leftPos + popW > window.innerWidth - 8) leftPos = window.innerWidth - popW - 8;
+        pop.style.top = topPos + 'px';
+        pop.style.left = leftPos + 'px';
         requestAnimationFrame(function () {
           requestAnimationFrame(function () { if (pop) pop.style.opacity = '1'; });
         });
@@ -1825,11 +2207,17 @@
         if (activePopup && !activePopup.contains(e.target)) closePopup();
       });
 
-      // Element 1: Patrick
-      document.getElementById('l1-patrick').addEventListener('click', function (e) {
+      // Element 1: Patrick photo + quote image share one popup anchored to photo
+      var patrickHTML = 'Patrick Fealey reported for the Boston Globe and Reuters for years. After a Bipolar I diagnosis at 29, he lost the ability to work. He now lives out of his car and wrote about it for Esquire.' +
+        '<div style="margin-top:0.6rem"><a href="https://www.esquire.com/news-politics/a62875397/homelessness-in-america/" target="_blank" rel="noopener" style="color:#70b6ff;text-decoration:none;font-size:0.8rem">Read his story here &rarr;</a></div>';
+      var patrickAnchor = document.getElementById('l1-patrick');
+      patrickAnchor.addEventListener('click', function (e) {
         e.stopPropagation();
-        showPopup(this, 'Patrick Fealey reported for the Boston Globe and Reuters for years. After a Bipolar I diagnosis at 29, he lost the ability to work. He now lives out of his car and wrote about it for Esquire.' +
-          '<div style="margin-top:0.6rem"><a href="https://www.esquire.com/news-politics/a62875397/homelessness-in-america/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:0.8rem">Read his story here &rarr;</a></div>');
+        showPopup(patrickAnchor, patrickHTML);
+      });
+      document.getElementById('l1-quote').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(patrickAnchor, patrickHTML);
       });
 
       // Element 2: 400 stat
@@ -1854,10 +2242,17 @@
         showPopup(this.parentElement, 'A caseworker is often the only person in the system whose job is to know your name and find you a way out.');
       });
 
-      // Element 4: Grid
+      // Element 4: Grid (popup to the left)
       document.getElementById('l1-grid').addEventListener('click', function (e) {
         e.stopPropagation();
         showPopup(this, 'For every 100 extremely low income households in America, there are only 35 affordable units available. The other 65 are competing for what does not exist.');
+        if (activePopup) {
+          var rect = this.getBoundingClientRect();
+          var popW = activePopup.offsetWidth;
+          var popH = activePopup.offsetHeight;
+          activePopup.style.left = (rect.left - popW - 8) + 'px';
+          activePopup.style.top = (rect.top + rect.height / 2 - popH / 2) + 'px';
+        }
       });
     })();
 
@@ -1874,18 +2269,28 @@
       function showPopup(anchor, html, maxW) {
         closePopup();
         var pop = document.createElement('div');
-        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(26,26,29,0.95);color:var(--text);border:1px solid var(--border);padding:1rem 1.25rem;max-width:' + (maxW || '320px') + ';font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);top:100%;margin-top:8px';
+        pop.style.cssText = 'position:fixed;z-index:40;background:rgba(255,255,255,0.97);color:#2c3a48;border:1px solid #d0d8e0;padding:1rem 1.25rem;width:' + (maxW || '500px') + ';max-width:90vw;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;box-shadow:0 4px 16px rgba(0,0,0,0.08)';
         var closeBtn = document.createElement('button');
         closeBtn.innerHTML = '&times;';
-        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
+        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:#8a95a3;cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
         closeBtn.addEventListener('click', function (ev) { ev.stopPropagation(); closePopup(); });
         pop.appendChild(closeBtn);
         var body = document.createElement('div');
         body.style.cssText = 'padding-right:1rem';
         body.innerHTML = html;
         pop.appendChild(body);
-        anchor.appendChild(pop);
+        document.body.appendChild(pop);
         activePopup = pop;
+        var rect = anchor.getBoundingClientRect();
+        var popH = pop.offsetHeight;
+        var popW = pop.offsetWidth;
+        var topPos = rect.top - popH - 8;
+        if (topPos < 8) topPos = rect.bottom + 8;
+        var leftPos = rect.left + rect.width / 2 - popW / 2;
+        if (leftPos < 8) leftPos = 8;
+        if (leftPos + popW > window.innerWidth - 8) leftPos = window.innerWidth - popW - 8;
+        pop.style.top = topPos + 'px';
+        pop.style.left = leftPos + 'px';
         requestAnimationFrame(function () {
           requestAnimationFrame(function () { if (pop) pop.style.opacity = '1'; });
         });
@@ -1898,33 +2303,44 @@
       // Element 1: Mona
       document.getElementById('l2-mona').addEventListener('click', function (e) {
         e.stopPropagation();
-        showPopup(this, 'Mona has a master\u2019s degree in mathematics and engineering. She became homeless after the LA wildfires destroyed her home. Not because of addiction or mental illness. Because a natural disaster met a system with no safety net ready for her. Even with her education she could not figure out how to navigate it.' +
-          '<div style="margin-top:0.75rem;width:100%;height:180px;overflow:hidden;position:relative"><iframe src="https://www.youtube.com/embed/nT3VGI0V5Rs?start=258&end=268&autoplay=1" style="width:100%;height:300px;border:none;position:absolute;top:50%;left:0;transform:translateY(-50%)" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>');
+        showPopup(this, 'Mona has a master\u2019s degree in mathematics and engineering. She became homeless after the LA wildfires destroyed her home. Not because of addiction or mental illness. Because a natural disaster met a system with no safety net ready for her. The 280 people at 711 Post Street include people like Mona. People who do not need treatment. People who need a place to stay while they figure out what is next. The new model does not have a bed for them.');
       });
 
-      // Element 2: Revolving Door (image → iframe swap)
-      document.getElementById('l2-door-img').addEventListener('click', function () {
-        var img = this;
-        var label = document.getElementById('l2-door-label');
-        img.style.opacity = '0';
-        setTimeout(function () {
-          var iframe = document.createElement('iframe');
-          iframe.src = 'https://chip-viewer-08306980.figma.site';
-          iframe.style.cssText = 'width:100%;max-width:560px;height:400px;border:none;display:block;margin:0 auto;opacity:0;transition:opacity 0.4s ease';
-          iframe.allowFullscreen = true;
-          img.parentElement.insertBefore(iframe, img);
-          img.remove();
-          if (label) label.remove();
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () { iframe.style.opacity = '1'; });
+      // Element 2: Revolving Door (click to play, click again to reset)
+      (function () {
+        var doorContainer = document.getElementById('l2-door');
+        var doorImg = document.getElementById('l2-door-img');
+        var doorLabel = document.getElementById('l2-door-label');
+        var doorIframe = null;
+        var overlay = null;
+        var playing = false;
+
+        doorImg.addEventListener('click', function () {
+          if (playing) return;
+          playing = true;
+          doorImg.style.visibility = 'hidden';
+          doorIframe = document.createElement('iframe');
+          doorIframe.src = 'https://chip-viewer-08306980.figma.site';
+          doorIframe.style.cssText = 'position:absolute;bottom:0;right:0;width:100%;height:100%;border:none';
+          doorIframe.allowFullscreen = true;
+          doorContainer.appendChild(doorIframe);
+          overlay = document.createElement('div');
+          overlay.style.cssText = 'position:absolute;bottom:0;right:0;width:100%;height:100%;z-index:10;cursor:pointer';
+          overlay.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (doorIframe) { doorIframe.remove(); doorIframe = null; }
+            if (overlay) { overlay.remove(); overlay = null; }
+            doorImg.style.visibility = 'visible';
+            playing = false;
           });
-        }, 400);
-      });
+          doorContainer.appendChild(overlay);
+        });
+      })();
 
       // Element 3: 1 in 3 stat
       document.getElementById('l2-stat').addEventListener('click', function (e) {
         e.stopPropagation();
-        showPopup(this, 'Only 3% of people with serious mental illness were connected to supportive housing after leaving jail. The other 97% returned to the street or a shelter with no sustained support.');
+        showPopup(this, 'Only 3% of people with serious mental illness were connected to supportive housing after leaving jail. The other 97% returned to the street or a shelter with no sustained support. The city is replacing 711 Post with treatment-based beds that require enrollment in services. For the 1 in 3 coming out of custody who do not qualify, the waitlist just got longer.');
       });
 
       // Element 4: Illa quote (inline, not popup)
@@ -1932,14 +2348,17 @@
       var illaQuote = document.getElementById('l2-illa-quote');
       var illaClose = document.getElementById('l2-illa-close');
 
-      illaTrigger.addEventListener('click', function () {
-        illaQuote.style.maxHeight = '300px';
-        illaQuote.style.opacity = '1';
-      });
-
-      illaClose.addEventListener('click', function () {
-        illaQuote.style.opacity = '0';
-        illaQuote.style.maxHeight = '0';
+      var illaOpen = false;
+      illaTrigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (illaOpen) {
+          illaQuote.style.opacity = '0';
+          illaQuote.style.maxHeight = '0';
+        } else {
+          illaQuote.style.maxHeight = '300px';
+          illaQuote.style.opacity = '1';
+        }
+        illaOpen = !illaOpen;
       });
     })();
 
@@ -1956,10 +2375,10 @@
       function showPopup(anchor, html) {
         closePopup();
         var pop = document.createElement('div');
-        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(26,26,29,0.95);color:var(--text);border:1px solid var(--border);padding:1rem 1.25rem;max-width:320px;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);top:100%;margin-top:8px';
+        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(255,255,255,0.97);color:#2c3a48;border:1px solid #d0d8e0;padding:1rem 1.25rem;max-width:480px;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);bottom:100%;margin-bottom:8px;box-shadow:0 4px 16px rgba(0,0,0,0.08)';
         var closeBtn = document.createElement('button');
         closeBtn.innerHTML = '&times;';
-        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
+        closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:#8a95a3;cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
         closeBtn.addEventListener('click', function (ev) { ev.stopPropagation(); closePopup(); });
         pop.appendChild(closeBtn);
         var body = document.createElement('div');
@@ -1981,7 +2400,7 @@
       document.getElementById('l3-soulieo').addEventListener('click', function (e) {
         e.stopPropagation();
         showPopup(this, 'Soulieo experienced homelessness for 10 years while working two jobs and doing case management work. He is now housed, running marathons, and building a nonprofit. What stayed with him was not about housing. It was about going through that time without anyone telling him they were proud of him or that they loved him.' +
-          '<div style="margin-top:0.75rem;font-family:var(--serif);font-style:italic;color:var(--text-dim);line-height:1.5">&ldquo;I very rarely hear I love you or I am proud of you, and that affects a person\u2019s mental state.&rdquo;</div>');
+          '<div style="margin-top:0.75rem;font-family:Playfair Display,Georgia,serif;font-style:italic;color:#6b7a8a;line-height:1.5">&ldquo;I very rarely hear I love you or I am proud of you, and that affects a person\u2019s mental state.&rdquo;</div>');
       });
 
       // Element 2: Rent vs Wages
