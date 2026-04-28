@@ -699,56 +699,75 @@
     .l1-quote-img:hover,
     .l3-quote:hover {
       transform: scale(1.03);
-      transition: transform 0.3s ease;
+      filter: brightness(1.05) saturate(1.2);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .l1-stat:hover .l1-stat-number,
     .l3-pct:hover .l3-pct-number {
-      color: #70b6ff;
+      color: #4a9de8;
       transform: scale(1.05);
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
+    .l1-stat:hover .l1-stat-caption,
+    .l3-pct:hover .l3-pct-caption {
+      color: #70b6ff;
+      transition: color 0.3s ease;
+    }
+
     .l1-units:hover {
       transform: scale(1.04);
-      transition: transform 0.3s ease;
+      filter: brightness(1.08);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .l1-words span:hover {
-      color: #70b6ff;
+      color: #4a9de8;
       transform: scale(1.1);
       display: inline-block;
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
     .l2-mona:hover img {
-      filter: brightness(1.1);
+      filter: brightness(1.1) saturate(1.15);
       transition: filter 0.3s ease;
     }
 
     .l2-caption:hover {
-      color: #70b6ff;
+      color: #4a9de8;
       transform: translateX(4px);
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
     .l2-stat:hover .l2-stat-number {
-      color: #70b6ff;
+      color: #4a9de8;
       transform: scale(1.05);
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
+    .l2-stat:hover .l2-stat-caption {
+      color: #70b6ff;
+      transition: color 0.3s ease;
+    }
+
     #l2-illa-trigger:hover {
       transform: scale(1.08);
-      transition: transform 0.3s ease;
+      filter: brightness(1.15);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .l3-rent:hover .l3-rent-block {
-      opacity: 0.6;
+      opacity: 0.7;
       transition: opacity 0.3s ease;
     }
 
     .l3-rent:hover .l3-rent-value {
+      color: #4a9de8;
+      transition: color 0.3s ease;
+    }
+
+    .l3-rent:hover .l3-rent-label {
       color: #70b6ff;
       transition: color 0.3s ease;
     }
@@ -756,6 +775,11 @@
     .l3-beds:hover .l3-beds-number {
       transform: scale(1.05);
       transition: transform 0.3s ease;
+    }
+
+    .l3-beds:hover .l3-beds-label {
+      color: #70b6ff;
+      transition: color 0.3s ease;
     }
 
     .layer-title {
@@ -2844,7 +2868,7 @@
       });
 
       // Element 1: Soulieo photo + quote share one popup anchored to photo
-      var soulieoHTML = 'Soulieo experienced homelessness for 10 years while working two jobs and doing case management work. He is now housed, running marathons, and building a nonprofit. What stayed with him was not the lack of a bed\u2014it was going through that time without anyone telling him they were proud of him or that they loved him. The city\u2019s new model promises \u201Cmore services,\u201D but a bed in a treatment program is not the same as a community that sees you. For the 280 people losing their beds at 711 Post, the question is not just where they will sleep\u2014it\u2019s whether anyone will notice.';
+      var soulieoHTML = 'Soulieo worked two jobs for a decade and still could not afford a place to live. The gap between rent and wages in this city made it impossible. That kind of sustained instability does not just exhaust a person physically\u2014it erodes their mental state. He rarely heard anyone say they loved him or were proud of him, and that absence shaped him as deeply as the lack of a roof. He is now housed, running marathons, and building a nonprofit\u2014but 280 beds are closing at 711 Post, and the people losing them face the same impossible math.';
       var soulieoAnchor = document.getElementById('l3-soulieo');
       soulieoAnchor.addEventListener('click', function (e) {
         e.stopPropagation();
