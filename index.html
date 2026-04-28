@@ -484,6 +484,211 @@
     .layer-2 .layer-number { color: #c9a87e; }
     .layer-3 .layer-number { color: #2c3a48; }
 
+    /* ── Layer 3: editorial spread ── */
+    .layer.layer-3 {
+      max-width: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      transform: none;
+      background: #fcfcfa;
+      overflow: hidden;
+    }
+
+    .l3-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .l3-header {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .layer-3 .layer-number {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #2c3a48;
+      margin-bottom: 6px;
+    }
+
+    .layer-3 .layer-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 38px;
+      color: #2c3a48;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .l3-soulieo {
+      position: absolute;
+      left: 75px;
+      top: 350px;
+      width: 428px;
+      height: 500px;
+      z-index: 1;
+    }
+
+    .l3-soulieo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%);
+    }
+
+    .l3-quote {
+      position: absolute;
+      left: 392px;
+      top: 610px;
+      width: 520px;
+      z-index: 2;
+    }
+
+    .l3-quote img {
+      width: 100%;
+      display: block;
+    }
+
+    .l3-pct {
+      position: absolute;
+      left: 50%;
+      top: 289px;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .l3-pct-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 120px;
+      font-weight: 900;
+      color: #70b6ff;
+      line-height: 1;
+    }
+
+    .l3-pct-caption {
+      font-size: 20px;
+      color: #2c3a48;
+      margin-top: 12px;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    .l3-rent {
+      position: absolute;
+      right: 180px;
+      top: 250px;
+      text-align: center;
+    }
+
+    .l3-rent-bars {
+      display: inline-flex;
+      gap: 2rem;
+      align-items: flex-end;
+    }
+
+    .l3-rent-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .l3-rent-bar-area {
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .l3-rent-block {
+      width: 56px;
+    }
+
+    .l3-rent-value {
+      color: #2c3a48;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 0.6rem;
+    }
+
+    .l3-rent-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6b7a8a;
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .l3-beds {
+      position: absolute;
+      right: 120px;
+      bottom: 180px;
+      text-align: center;
+    }
+
+    .l3-beds-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .l3-beds-item {
+      text-align: center;
+    }
+
+    .l3-beds-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 80px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .l3-beds-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2c3a48;
+      margin-top: 6px;
+    }
+
+    .l3-beds-vs {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #8a95a3;
+    }
+
+    .layer-3 .layer-advance {
+      position: absolute;
+      left: 45.25%;
+      top: 88.09%;
+      width: 11.81%;
+      height: 4.92%;
+      text-align: center;
+    }
+
+    .layer-3 .layer-advance-btn {
+      color: #2f3a47;
+      border-color: #2f3a47;
+    }
+
+    .layer-3 .layer-advance-btn:hover {
+      color: #80b4f9;
+      border-color: #80b4f9;
+    }
+
     .layer-title {
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
@@ -624,7 +829,7 @@
       position: absolute;
       left: 392px;
       top: 564px;
-      width: 420px;
+      width: 520px;
       z-index: 2;
     }
 
@@ -1124,6 +1329,73 @@
         height: auto;
         text-align: center;
       }
+
+      /* Layer 3 responsive */
+      .layer.layer-3 { overflow-y: auto; overflow-x: hidden; }
+
+      .l3-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 2rem 1.5rem 3rem;
+        gap: 2rem;
+      }
+
+      .l3-header { position: static; text-align: center; }
+
+      .layer-3 .layer-title {
+        font-size: 1.6rem;
+        white-space: normal;
+      }
+
+      .l3-pct {
+        position: static;
+        transform: none;
+        text-align: center;
+      }
+
+      .l3-pct-number { font-size: 72px; }
+      .l3-pct-caption { font-size: 16px; }
+
+      .l3-soulieo {
+        position: static;
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+      }
+
+      .l3-soulieo img { height: auto; }
+
+      .l3-quote {
+        position: static;
+        width: 100%;
+        max-width: 360px;
+      }
+
+      .l3-rent {
+        position: static;
+        text-align: center;
+      }
+
+      .l3-rent-bars {
+        justify-content: center;
+        height: 160px;
+      }
+
+      .l3-beds {
+        position: static;
+        text-align: center;
+      }
+
+      .l3-beds-number { font-size: 56px; }
+
+      .layer-3 .layer-advance {
+        position: static;
+        width: auto;
+        height: auto;
+        text-align: center;
+      }
     }
 
     /* ── Resume prompt ── */
@@ -1389,7 +1661,7 @@
         </div>
 
         <!-- Mona caption -->
-        <div class="l2-caption">
+        <div id="l2-mona-caption" class="l2-caption" style="cursor:pointer">
           Mona became homeless after the LA wildfires despite holding a master&rsquo;s degree in mathematics and engineering.
         </div>
 
@@ -1423,59 +1695,68 @@
     </div>
 
     <div class="layer layer-3" data-layer="3">
-      <div class="layer-number">Layer 3 &mdash; The Data</div>
-      <h3 class="layer-title">What the numbers say</h3>
-      <div class="layer-body" style="max-height:calc(100vh - 220px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c0c8d0 transparent;padding-right:0.5rem">
+      <div class="l3-page">
+        <!-- Header -->
+        <div class="l3-header">
+          <div class="layer-number">Layer 3 &mdash; The Data</div>
+          <h3 class="layer-title">What it Means to Lose a Bed</h3>
+        </div>
 
-        <!-- Element 1: Soulieo -->
-        <div id="l3-soulieo" style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <img src="Images/soulieo.png" alt="Soulieo" style="width:180px;min-width:180px;height:220px;object-fit:cover;display:block">
-          <div style="flex:1">
-            <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#2c3a48;margin-bottom:0.3rem">Soulieo</div>
-            <div style="font-size:0.75rem;color:#6b7a8a;margin-bottom:1rem;line-height:1.5">Experienced homelessness for 10 years while working two jobs. Now housed, running marathons, and building a nonprofit.</div>
+        <!-- Soulieo photo -->
+        <div id="l3-soulieo" class="l3-soulieo" style="cursor:pointer">
+          <img src="Images/soulieo.png" alt="Soulieo">
+        </div>
+
+        <!-- Soulieo quote -->
+        <div id="l3-quote" class="l3-quote" style="cursor:pointer">
+          <img src="Images/soulieo-quote.jpg" alt="Soulieo quote" style="width:100%;display:block;">
+        </div>
+
+        <!-- 63% statistic -->
+        <div id="l3-pct" class="l3-pct" style="cursor:pointer">
+          <div class="l3-pct-number">63%</div>
+          <div class="l3-pct-caption">of people experiencing homelessness are Black or Hispanic and Latinx.</div>
+        </div>
+
+        <!-- Rent vs Wages -->
+        <div id="l3-rent" class="l3-rent" style="cursor:pointer">
+          <div class="l3-rent-bars">
+            <div class="l3-rent-bar">
+              <div class="l3-rent-bar-area">
+                <div class="l3-rent-block" style="height:160px;background:#70b6ff"></div>
+              </div>
+              <div class="l3-rent-value">$3,000</div>
+              <div class="l3-rent-label">Median Rent</div>
+            </div>
+            <div class="l3-rent-bar">
+              <div class="l3-rent-bar-area">
+                <div class="l3-rent-block" style="height:180px;background:#d0d8e0"></div>
+              </div>
+              <div class="l3-rent-value">$3,400</div>
+              <div class="l3-rent-label">Monthly<br>Minimum Wage</div>
+            </div>
           </div>
         </div>
 
-        <!-- Element 2: Rent vs Wages -->
-        <div id="l3-rent" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <div style="display:inline-flex;gap:2.5rem;align-items:flex-end;height:180px">
-            <div style="display:flex;flex-direction:column;align-items:center">
-              <div style="width:40px;height:150px;background:#70b6ff"></div>
-              <div style="color:#2c3a48;font-size:0.85rem;margin-top:0.5rem">$3,000</div>
-              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.2rem">Median Rent</div>
+        <!-- 280 vs 202 beds -->
+        <div id="l3-beds" class="l3-beds" style="cursor:pointer">
+          <div class="l3-beds-row">
+            <div class="l3-beds-item">
+              <div class="l3-beds-number" style="color:#c95050">280</div>
+              <div class="l3-beds-label">Beds Closing</div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:center">
-              <div style="width:40px;height:170px;background:#d0d8e0"></div>
-              <div style="color:#2c3a48;font-size:0.85rem;margin-top:0.5rem">$3,400</div>
-              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.2rem">Minimum Wage Take-Home</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Element 3: 280 vs 400 -->
-        <div id="l3-beds" style="text-align:center;margin-bottom:3.5rem;cursor:pointer;position:relative">
-          <div style="display:inline-flex;align-items:center;gap:2rem">
-            <div style="text-align:center">
-              <div style="font-family:'Playfair Display',Georgia,serif;font-size:4rem;font-weight:900;color:#70b6ff;line-height:1">280</div>
-              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.3rem">beds closing</div>
-            </div>
-            <div style="color:#8a95a3;font-size:1.5rem;font-weight:300">vs</div>
-            <div style="text-align:center">
-              <div style="font-family:'Playfair Display',Georgia,serif;font-size:4rem;font-weight:900;color:#2c3a48;line-height:1">400</div>
-              <div style="color:#6b7a8a;font-size:0.75rem;margin-top:0.3rem">people on the waitlist</div>
+            <div class="l3-beds-vs">vs</div>
+            <div class="l3-beds-item">
+              <div class="l3-beds-number" style="color:#2c3a48">202</div>
+              <div class="l3-beds-label">Net Beds &ldquo;Gained&rdquo;</div>
             </div>
           </div>
         </div>
 
-        <!-- Element 4: 63% statistic -->
-        <div id="l3-pct" style="text-align:center;margin-bottom:1rem;cursor:pointer;position:relative">
-          <div style="font-family:'Playfair Display',Georgia,serif;font-size:5rem;font-weight:900;color:#2c3a48;line-height:1">63%</div>
-          <div style="color:#6b7a8a;font-size:0.9rem;margin-top:0.5rem;line-height:1.5">of people experiencing homelessness are Black or Hispanic and Latinx.</div>
+        <!-- Continue -->
+        <div class="layer-advance">
+          <button class="layer-advance-btn" id="finish-btn">Continue &rarr;</button>
         </div>
-
-      </div>
-      <div class="layer-advance">
-        <button class="layer-advance-btn" id="finish-btn">Continue &rarr;</button>
       </div>
     </div>
 
@@ -1790,7 +2071,7 @@
     // Full-viewport layers (L1, L2) use left:0;top:0;transform:none in CSS,
     // so animations must NOT include the centering translate.
     function lBase(el) {
-      return (el.classList.contains('layer-1') || el.classList.contains('layer-2')) ? '' : CENTER;
+      return (el.classList.contains('layer-1') || el.classList.contains('layer-2') || el.classList.contains('layer-3')) ? '' : CENTER;
     }
     function lTfm(el, extra) {
       var b = lBase(el);
@@ -2053,12 +2334,14 @@
     const seenStages = new Set();
 
     function revealContinueFor(stageKey, delay) {
+      if (stageKey === 'focused') {
+        const btn = document.getElementById('unveil-btn');
+        if (btn) btn.classList.add('visible');
+        return;
+      }
       const wait = typeof delay === 'number' ? delay : 2200;
       setTimeout(() => {
-        if (stageKey === 'focused') {
-          const btn = document.getElementById('unveil-btn');
-          if (btn) btn.classList.add('visible');
-        } else if (stageKey === 'layer1' || stageKey === 'layer2' || stageKey === 'layer3') {
+        if (stageKey === 'layer1' || stageKey === 'layer2' || stageKey === 'layer3') {
           const n = stageKey.slice(-1);
           const layer = layersView.querySelector('.layer[data-layer="' + n + '"]');
           const btn = layer && layer.querySelector('.layer-advance-btn');
@@ -2300,10 +2583,16 @@
         if (activePopup && !activePopup.contains(e.target)) closePopup();
       });
 
-      // Element 1: Mona
-      document.getElementById('l2-mona').addEventListener('click', function (e) {
+      // Element 1: Mona photo + caption share one popup anchored to photo
+      var monaHTML = 'Mona has a master\u2019s degree in mathematics and engineering. She became homeless after the LA wildfires destroyed her home. Not because of addiction or mental illness. Because a natural disaster met a system with no safety net ready for her. The 280 people at 711 Post Street include people like Mona. People who do not need treatment. People who need a place to stay while they figure out what is next. The new model does not have a bed for them.';
+      var monaAnchor = document.getElementById('l2-mona');
+      monaAnchor.addEventListener('click', function (e) {
         e.stopPropagation();
-        showPopup(this, 'Mona has a master\u2019s degree in mathematics and engineering. She became homeless after the LA wildfires destroyed her home. Not because of addiction or mental illness. Because a natural disaster met a system with no safety net ready for her. The 280 people at 711 Post Street include people like Mona. People who do not need treatment. People who need a place to stay while they figure out what is next. The new model does not have a bed for them.');
+        showPopup(monaAnchor, monaHTML);
+      });
+      document.getElementById('l2-mona-caption').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(monaAnchor, monaHTML);
       });
 
       // Element 2: Revolving Door (click to play, click again to reset)
@@ -2375,7 +2664,7 @@
       function showPopup(anchor, html) {
         closePopup();
         var pop = document.createElement('div');
-        pop.style.cssText = 'position:absolute;z-index:40;background:rgba(255,255,255,0.97);color:#2c3a48;border:1px solid #d0d8e0;padding:1rem 1.25rem;max-width:480px;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;left:50%;transform:translateX(-50%);bottom:100%;margin-bottom:8px;box-shadow:0 4px 16px rgba(0,0,0,0.08)';
+        pop.style.cssText = 'position:fixed;z-index:40;background:rgba(255,255,255,0.97);color:#2c3a48;border:1px solid #d0d8e0;padding:1rem 1.25rem;width:450px;max-width:90vw;font-size:0.85rem;line-height:1.6;opacity:0;transition:opacity 0.3s ease;box-shadow:0 4px 16px rgba(0,0,0,0.08)';
         var closeBtn = document.createElement('button');
         closeBtn.innerHTML = '&times;';
         closeBtn.style.cssText = 'position:absolute;top:6px;right:8px;background:none;border:none;color:#8a95a3;cursor:pointer;font-size:0.95rem;line-height:1;padding:2px 4px;font-family:var(--sans)';
@@ -2385,8 +2674,18 @@
         body.style.cssText = 'padding-right:1rem';
         body.innerHTML = html;
         pop.appendChild(body);
-        anchor.appendChild(pop);
+        document.body.appendChild(pop);
         activePopup = pop;
+        var rect = anchor.getBoundingClientRect();
+        var popH = pop.offsetHeight;
+        var popW = pop.offsetWidth;
+        var topPos = rect.top - popH - 8;
+        if (topPos < 8) topPos = rect.bottom + 8;
+        var leftPos = rect.left + rect.width / 2 - popW / 2;
+        if (leftPos < 8) leftPos = 8;
+        if (leftPos + popW > window.innerWidth - 8) leftPos = window.innerWidth - popW - 8;
+        pop.style.top = topPos + 'px';
+        pop.style.left = leftPos + 'px';
         requestAnimationFrame(function () {
           requestAnimationFrame(function () { if (pop) pop.style.opacity = '1'; });
         });
@@ -2396,11 +2695,16 @@
         if (activePopup && !activePopup.contains(e.target)) closePopup();
       });
 
-      // Element 1: Soulieo
-      document.getElementById('l3-soulieo').addEventListener('click', function (e) {
+      // Element 1: Soulieo photo + quote share one popup anchored to photo
+      var soulieoHTML = 'Soulieo experienced homelessness for 10 years while working two jobs and doing case management work. He is now housed, running marathons, and building a nonprofit. What stayed with him was not about housing. It was about going through that time without anyone telling him they were proud of him or that they loved him.';
+      var soulieoAnchor = document.getElementById('l3-soulieo');
+      soulieoAnchor.addEventListener('click', function (e) {
         e.stopPropagation();
-        showPopup(this, 'Soulieo experienced homelessness for 10 years while working two jobs and doing case management work. He is now housed, running marathons, and building a nonprofit. What stayed with him was not about housing. It was about going through that time without anyone telling him they were proud of him or that they loved him.' +
-          '<div style="margin-top:0.75rem;font-family:Playfair Display,Georgia,serif;font-style:italic;color:#6b7a8a;line-height:1.5">&ldquo;I very rarely hear I love you or I am proud of you, and that affects a person\u2019s mental state.&rdquo;</div>');
+        showPopup(soulieoAnchor, soulieoHTML);
+      });
+      document.getElementById('l3-quote').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPopup(soulieoAnchor, soulieoHTML);
       });
 
       // Element 2: Rent vs Wages
@@ -2412,7 +2716,7 @@
       // Element 3: 280 vs 400
       document.getElementById('l3-beds').addEventListener('click', function (e) {
         e.stopPropagation();
-        showPopup(this, '280 beds are closing. 400 people are already on the waitlist. The city claims a net gain of 202 beds since Lurie took office. That number was calculated before this closure was announced.');
+        showPopup(this, 'The city claimed a net gain of 202 shelter beds since Mayor Lurie took office. But 280 beds are now set to close\u2014more than wiping out that entire gain. The 202 figure was calculated before this closure was even announced, meaning the real net change is negative.');
       });
 
       // Element 4: 63%
